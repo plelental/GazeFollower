@@ -10,14 +10,46 @@ import SceneKit
 import ARKit
 
 class CameraViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
-
+    
+    @IBOutlet weak var leftEyeX: UITextField!
+    @IBOutlet weak var leftEyeY: UITextField!
+    @IBOutlet weak var leftEyeZ: UITextField!
+    @IBOutlet weak var rightEyeY: UITextField!
+    @IBOutlet weak var rightEyeX: UITextField!
+    @IBOutlet weak var rightEyeZ: UITextField!
+    
     @IBOutlet weak var sceneView: ARSCNView!
+    
     var contentNode: SCNNode?
     lazy var rightEyeNode = SCNReferenceNode(named: "coordinateOrigin")
     lazy var leftEyeNode = SCNReferenceNode(named: "coordinateOrigin")
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.rightEyeZ.backgroundColor = .white
+        self.rightEyeZ.textColor = .blue
+        self.rightEyeZ.textAlignment = .center
+        
+        self.rightEyeX.backgroundColor = .white
+        self.rightEyeX.textColor = .blue
+        self.rightEyeX.textAlignment = .center
+        
+        self.rightEyeY.backgroundColor = .white
+        self.rightEyeY.textColor = .blue
+        self.rightEyeZ.textAlignment = .center
+        
+        self.leftEyeZ.backgroundColor = .white
+        self.leftEyeZ.textColor = .blue
+        self.leftEyeZ.textAlignment = .center
+        
+        self.leftEyeX.backgroundColor = .white
+        self.leftEyeX.textColor = .blue
+        self.leftEyeX.textAlignment = .center
+        
+        self.leftEyeY.backgroundColor = .white
+        self.leftEyeY.textColor = .blue
+        self.leftEyeY.textAlignment = .center
+        
         sceneView.delegate = self
         sceneView.session.delegate = self
         let scene = SCNScene()
@@ -26,10 +58,14 @@ class CameraViewController: UIViewController, ARSCNViewDelegate, ARSessionDelega
         sceneView.autoenablesDefaultLighting = true
         // Do any additional setup after loading the view.
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated:    animated)
+    }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
         // Create a session configuration
         let configuration = ARFaceTrackingConfiguration()
         configuration.isLightEstimationEnabled = true
@@ -39,6 +75,9 @@ class CameraViewController: UIViewController, ARSCNViewDelegate, ARSessionDelega
     
     override func viewWillDisappear(_ animated: Bool) {
         
+        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        self.navigationController?.navigationBar.shadowImage = nil
+        self.navigationController?.navigationBar.isTranslucent = false
         // Pause the view's session
         sceneView.session.pause()
     }
@@ -60,33 +99,47 @@ class CameraViewController: UIViewController, ARSCNViewDelegate, ARSessionDelega
             
             // Create empty node
             contentNode = SCNReferenceNode(named: "coordinateOrigin")
+            //            self.rightEyeX.text = String(faceAnchor.rightEyeTransform.columns.0)
             print("Left eye", faceAnchor.leftEyeTransform)
             print("Right eye", faceAnchor.rightEyeTransform)
             self.addEyeTransformNodes()
-
+            
             // Return node
             return contentNode
         }
-            
+        
         // Don't know and don't care what kind of anchor this is so return empty node
         return SCNNode()
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for faceAnchor: ARAnchor) {
         guard #available(iOS 12.0, *), let faceAnchor = faceAnchor as? ARFaceAnchor
-            else { return }
+        else { return }
+        
+        let rightEyePosition = SCNVector3(
+            faceAnchor.rightEyeTransform.columns.3.x,
+            faceAnchor.rightEyeTransform.columns.3.y,
+            faceAnchor.rightEyeTransform.columns.3.z
+        )
+        
+        let leftEyePosition = SCNVector3(
+            faceAnchor.leftEyeTransform.columns.3.x,
+            faceAnchor.leftEyeTransform.columns.3.y,
+            faceAnchor.leftEyeTransform.columns.3.z
+        )
+     
+        self.rightEyeX.text = "Right eye x: " + String(format: "%.5f",rightEyePosition.x)
+        self.rightEyeY.text = "Right eye y: " + String(format: "%.5f",rightEyePosition.y)
+        self.rightEyeZ.text = "Right eye z: " + String(format: "%.5f",rightEyePosition.z)
+        
+        self.leftEyeX.text = "Left eye x: " + String(format: "%.5f",leftEyePosition.x)
+        self.leftEyeY.text = "Left eye y: " + String(format: "%.5f",leftEyePosition.y)
+        self.leftEyeZ.text = "Left eye z: " + String(format: "%.5f",leftEyePosition.z)
+        
         rightEyeNode.simdTransform = faceAnchor.rightEyeTransform
         leftEyeNode.simdTransform = faceAnchor.leftEyeTransform
-        // If it's a face anchor with a node that has face geometry update the geometry otherwise do nothing
-//        if let faceAnchor = anchor as? ARFaceAnchor,
-//           let faceGeometry = node.geometry as? ARSCNFaceGeometry {
-//            faceGeometry.update(from: faceAnchor.geometry)
-//            print("Left eye", faceAnchor.leftEyeTransform)
-//            print("Right eye", faceAnchor.rightEyeTransform)
-//        } else {
-//            print(anchor)
-//        }
     }
+    
     func addEyeTransformNodes() {
         guard #available(iOS 12.0, *), let anchorNode = contentNode else { return }
         
@@ -113,5 +166,5 @@ class CameraViewController: UIViewController, ARSCNViewDelegate, ARSessionDelega
         
     }
     
-
+    
 }

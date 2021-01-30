@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 extension UIButton {
-    func applyshadowWithCorner(){
+    func applyShadow(){
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOpacity = 0.2
         self.layer.shadowOffset = CGSize.zero
@@ -24,7 +24,7 @@ extension UIButton {
         gradientLayer.startPoint = CGPoint(x: 0, y: 0)
         gradientLayer.endPoint = CGPoint(x: 1, y: 0)
         gradientLayer.frame = self.bounds
-        gradientLayer.cornerRadius = self.frame.height/2
+        gradientLayer.cornerRadius =  25
 
         gradientLayer.shadowColor = UIColor.darkGray.cgColor
         gradientLayer.shadowOffset = CGSize(width: 2.5, height: 2.5)
