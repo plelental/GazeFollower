@@ -31,6 +31,7 @@ class ViewController: UIViewController {
         Calibrate.applyGradient(colors: [UIColorFromRGB(0x2B95CE).cgColor,UIColorFromRGB(0x2ECAD5).cgColor])
         Calibrate.applyshadowWithCorner()
     }
+    
 }
 
 
