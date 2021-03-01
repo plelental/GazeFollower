@@ -16,6 +16,7 @@
 		1D134A5D25C4B76000408C11 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D134A5B25C4B76000408C11 /* LaunchScreen.storyboard */; };
 		1D134A6825C4B76100408C11 /* GazeFollowerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D134A6725C4B76100408C11 /* GazeFollowerTests.swift */; };
 		1D134A7325C4B76100408C11 /* GazeFollowerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D134A7225C4B76100408C11 /* GazeFollowerUITests.swift */; };
+		1D2EE72825ED9F0300547B78 /* GazePointController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2EE72725ED9F0300547B78 /* GazePointController.swift */; };
 		1D8F403B25C57A6B009F4146 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8F403A25C57A6B009F4146 /* CameraViewController.swift */; };
 		1DF1BC9E25C4C82000C7175C /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF1BC9D25C4C82000C7175C /* UIButtonExtension.swift */; };
 		1DF1BCA325C4C86300C7175C /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF1BCA225C4C86300C7175C /* UIImageViewExtension.swift */; };
@@ -54,6 +55,7 @@
 		1D134A6E25C4B76100408C11 /* GazeFollowerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GazeFollowerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D134A7225C4B76100408C11 /* GazeFollowerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GazeFollowerUITests.swift; sourceTree = "<group>"; };
 		1D134A7425C4B76100408C11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1D2EE72725ED9F0300547B78 /* GazePointController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GazePointController.swift; sourceTree = "<group>"; };
 		1D8F403A25C57A6B009F4146 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		1DF1BC9D25C4C82000C7175C /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		1DF1BCA225C4C86300C7175C /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				1D134A5625C4B75E00408C11 /* Main.storyboard */,
 				1D134A5B25C4B76000408C11 /* LaunchScreen.storyboard */,
 				1D8F403A25C57A6B009F4146 /* CameraViewController.swift */,
+				1D2EE72725ED9F0300547B78 /* GazePointController.swift */,
 			);
 			path = GazeFollower;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DF1BCA325C4C86300C7175C /* UIImageViewExtension.swift in Sources */,
+				1D2EE72825ED9F0300547B78 /* GazePointController.swift in Sources */,
 				1D134A5325C4B75E00408C11 /* ViewController.swift in Sources */,
 				1DF1BC9E25C4C82000C7175C /* UIButtonExtension.swift in Sources */,
 				1D134A5125C4B75E00408C11 /* AppDelegate.swift in Sources */,
