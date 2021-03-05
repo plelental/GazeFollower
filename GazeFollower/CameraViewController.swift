@@ -66,19 +66,16 @@ class CameraViewController: UIViewController, ARSCNViewDelegate, ARSessionDelega
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
-        // Create a session configuration
+
         let configuration = ARFaceTrackingConfiguration()
         configuration.isLightEstimationEnabled = true
-        // Run the view's session
         sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-
         navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.shadowImage = nil
         navigationController?.navigationBar.isTranslucent = false
-        // Pause the view's session
         sceneView.session.pause()
     }
 
@@ -102,7 +99,7 @@ class CameraViewController: UIViewController, ARSCNViewDelegate, ARSessionDelega
         rightEyeNode.simdTransform = faceAnchor.rightEyeTransform
         leftEyeNode.simdTransform = faceAnchor.leftEyeTransform
     }
-
+ 
     private func setEyeBoxesContent(faceAnchor: ARFaceAnchor) {
         let rightEyePosition = SCNVector3(
                 faceAnchor.rightEyeTransform.columns.3.x,
@@ -127,24 +124,28 @@ class CameraViewController: UIViewController, ARSCNViewDelegate, ARSessionDelega
 
         lookingLeftRight.text = horizontalLookPointText
         lookingUpDown.text = verticalLookPointText
-        rightEyeX.text = "Right eye x: " + String(format: "%.5f", rightEyePosition.x)
-        rightEyeY.text = "Right eye y: " + String(format: "%.5f", rightEyePosition.y)
-        rightEyeZ.text = "Right eye z: " + String(format: "%.5f", rightEyePosition.z)
+        
+        rightEyeX.text = eyePositionText(eye: "Right", coordinate: "x", position: rightEyePosition.x)
+        rightEyeY.text = eyePositionText(eye: "Right", coordinate: "y", position: rightEyePosition.y)
+        rightEyeZ.text = eyePositionText(eye: "Right", coordinate: "z", position: rightEyePosition.z)
 
-        leftEyeX.text = "Left eye x: " + String(format: "%.5f", leftEyePosition.x)
-        leftEyeY.text = "Left eye y: " + String(format: "%.5f", leftEyePosition.y)
-        leftEyeZ.text = "Left eye z: " + String(format: "%.5f", leftEyePosition.z)
+        leftEyeX.text = eyePositionText(eye: "Left", coordinate: "x", position: leftEyePosition.x)
+        leftEyeY.text = eyePositionText(eye: "Left", coordinate: "y", position: leftEyePosition.y)
+        leftEyeZ.text = eyePositionText(eye: "Left", coordinate: "z", position: leftEyePosition.z)
     }
-
+    
+    func eyePositionText(eye: String,coordinate: String, position: Float) -> String {
+        return eye + " eye " + coordinate + ": " + String(format: "%.5f", position);
+    }
+    
     func addEyeTransformNodes() {
         guard #available(iOS 12.0, *), let anchorNode = contentNode else {
             return
         }
 
-        // Scale down the coordinate axis visualizations for eyes.
-        rightEyeNode.simdPivot = float4x4(diagonal: float4(3, 3, 3, 1))
-        leftEyeNode.simdPivot = float4x4(diagonal: float4(3, 3, 3, 1))
-
+        rightEyeNode.simdPivot = float4x4(diagonal: SIMD4(3, 3, 3, 1))
+        leftEyeNode.simdPivot = float4x4(diagonal: SIMD4(3, 3, 3, 1))
+       
         anchorNode.addChildNode(rightEyeNode)
         anchorNode.addChildNode(leftEyeNode)
     }
