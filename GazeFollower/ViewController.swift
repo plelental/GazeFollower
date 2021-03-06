@@ -14,7 +14,7 @@ class ViewController: BaseController {
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var gazeEstimator: UIButton!
     @IBOutlet weak var calibrate: UIButton!
-    @IBOutlet weak var EyeImage: UIImageView!
+    @IBOutlet weak var eyeImage: UIImageView!
     @IBOutlet weak var cameraButton: UIButton!
     @IBOutlet weak var saveDataButton: UIButton!
 
@@ -54,7 +54,7 @@ class ViewController: BaseController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        EyeImage.applyShadowWithCorner()
+        eyeImage.applyShadowWithCorner()
 
         cameraButton.applyGradient(colors: buttonColor())
         cameraButton.applyShadow()

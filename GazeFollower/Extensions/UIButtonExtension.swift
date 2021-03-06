@@ -14,7 +14,6 @@ extension UIButton {
         layer.shadowOpacity = 0.2
         layer.shadowOffset = CGSize.zero
         layer.shadowRadius = 10
-
     }
 
     func applyGradient(colors: [CGColor]) {

@@ -93,11 +93,11 @@
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="Oih-5q-K73"/>
                     <connections>
-                        <outlet property="Calibrate" destination="JYb-SB-eOp" id="ihk-ws-0ts"/>
-                        <outlet property="CameraButton" destination="CEs-TR-sTd" id="4hP-x8-6Kx"/>
-                        <outlet property="EyeImage" destination="B4L-5s-SFH" id="Pub-6D-MtO"/>
-                        <outlet property="GazeEstimator" destination="nHg-4z-uqb" id="0JP-Yn-hur"/>
-                        <outlet property="MainView" destination="v4B-hM-6rR" id="85E-j1-SRz"/>
+                        <outlet property="calibrate" destination="JYb-SB-eOp" id="EvN-rY-VvE"/>
+                        <outlet property="cameraButton" destination="CEs-TR-sTd" id="2WX-ML-Ibp"/>
+                        <outlet property="eyeImage" destination="B4L-5s-SFH" id="nJC-Lk-lkT"/>
+                        <outlet property="gazeEstimator" destination="nHg-4z-uqb" id="fjp-DS-4cf"/>
+                        <outlet property="mainView" destination="v4B-hM-6rR" id="9b9-t5-xVN"/>
                         <outlet property="saveDataButton" destination="UgB-gr-Yd8" id="g34-38-gHP"/>
                     </connections>
                 </viewController>

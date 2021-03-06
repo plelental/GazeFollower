@@ -20,8 +20,12 @@ class CalibrationController: BaseController, ARSCNViewDelegate, ARSessionDelegat
 
     private var isScreenTouched = false;
     private var step = 1
+   
     private let fileService = FileService()
+    private let estimationPointService = EstimationPointService()
 
+    private var cords = CGPoint()
+   
     @objc func touchedScreen(touch: UITapGestureRecognizer) {
         isScreenTouched = true;
     }
@@ -55,14 +59,14 @@ class CalibrationController: BaseController, ARSCNViewDelegate, ARSessionDelegat
     }
 
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for faceAnchor: ARAnchor) {
-        guard #available(iOS 12.0, *), let _ = faceAnchor as? ARFaceAnchor
+        guard #available(iOS 12.0, *), let faceAnchor = faceAnchor as? ARFaceAnchor
                 else {
             return
         }
-
         renderPoint(step: step)
+        cords = estimationPointService.getEstimationPointCoordinates(faceAnchor: faceAnchor, view: calibrationView)
     }
-
+   
     func renderPoint(step: Int) {
         DispatchQueue.main.async(execute: { () -> Void in
             self.calibrationView.layer.sublayers?.removeAll()
@@ -96,7 +100,7 @@ class CalibrationController: BaseController, ARSCNViewDelegate, ARSessionDelegat
         formatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
         let timestamp = formatter.string(from: Date())
 
-        let text = "date: \(timestamp) | calibration_point_x: \(calibrationPoint.x) | calibration_point_y: \(calibrationPoint.y) \n"
+        let text = "date: \(timestamp) | calibration_point_x: \(calibrationPoint.x) | calibration_point_y: \(calibrationPoint.y) | estimated_point_x: \(cords.x) | estimated_point_y: \(cords.y) \n"
 
         guard let data = (text).data(using: String.Encoding.utf8) else {
             return
