@@ -7,13 +7,15 @@
 
 import Foundation
 
-class FileService{
-    
+class FileService {
+
     func getCalibrationFileUrl() -> URL? {
-        guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
-        
+        guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            return nil
+        }
+
         let fileName = "gazefollower_calibration_data.txt"
         return documentsDirectory.appendingPathComponent(fileName)
     }
-    
+
 }

@@ -9,11 +9,10 @@ import Foundation
 import UIKit
 
 extension UIImageView {
-    func applyshadowWithCorner(){
-        self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOpacity = 0.3
-        self.layer.shadowOffset = CGSize.zero
-        self.layer.shadowRadius = 10
-    
+    func applyShadowWithCorner() {
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.3
+        layer.shadowOffset = CGSize.zero
+        layer.shadowRadius = 10
     }
 }

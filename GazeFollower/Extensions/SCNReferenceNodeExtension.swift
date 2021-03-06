@@ -14,7 +14,7 @@ extension SCNReferenceNode {
         let url = Bundle.main.url(forResource: resourceName, withExtension: "scn")!
         self.init(url: url)!
         if loadImmediately {
-            self.load()
+            load()
         }
     }
 }
