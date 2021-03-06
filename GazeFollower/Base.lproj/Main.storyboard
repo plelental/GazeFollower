@@ -72,6 +72,21 @@
                                 <color key="textColor" systemColor="systemBlueColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UgB-gr-Yd8">
+                                <rect key="frame" x="20" y="763" width="374" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.50852914279999994" blue="0.81625570709999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="contentStretch" x="0.050000000000000003" y="0.0" width="1" height="1"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                <state key="normal" title="Save data">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="light"/>
+                                </state>
+                                <connections>
+                                    <action selector="onClick:forEvent:" destination="3fP-u6-DMW" eventType="touchUpInside" id="pxj-0l-bS4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="zeG-X7-WBe"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -83,6 +98,7 @@
                         <outlet property="EyeImage" destination="B4L-5s-SFH" id="Pub-6D-MtO"/>
                         <outlet property="GazeEstimator" destination="nHg-4z-uqb" id="0JP-Yn-hur"/>
                         <outlet property="MainView" destination="v4B-hM-6rR" id="85E-j1-SRz"/>
+                        <outlet property="saveDataButton" destination="UgB-gr-Yd8" id="g34-38-gHP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mYF-24-F4J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

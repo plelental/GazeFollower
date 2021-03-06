@@ -15,12 +15,31 @@ class ViewController: BaseController {
     @IBOutlet weak var GazeEstimator: UIButton!
     @IBOutlet weak var Calibrate: UIButton!
     @IBOutlet weak var EyeImage: UIImageView!
-    @IBOutlet weak var CameraButton: UIButton!    
+    @IBOutlet weak var CameraButton: UIButton!
+    @IBOutlet weak var saveDataButton: UIButton!
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.setUpNavigationBarAfterAppear(hidden: true,animated: animated)
+    private let fileService = FileService()
+
+    @IBAction func onClick(_ sender: UIButton, forEvent event: UIEvent){
+        guard let url = fileService.getCalibrationFileUrl() else {
+            return
+        }
+        do {
+            let data = try String(contentsOf:url)
+            let activityViewController = UIActivityViewController(activityItems: [data], applicationActivities: nil)
+            present(activityViewController, animated: true, completion: nil)}
+        catch {
+            let alert = UIAlertController(title: "No calibration data available", message: "To save the data, please first process the calibration step", preferredStyle: .alert)
+
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+
+            self.present(alert, animated: true)
+        }
     }
     
+    
+    override func viewDidAppear(_ animated: Bool) {        super.setUpNavigationBarAfterAppear(hidden: true,animated: animated)
+    }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.barStyle = UIBarStyle.default
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black]
@@ -43,6 +62,9 @@ class ViewController: BaseController {
         
         Calibrate.applyGradient(colors: buttonColor())
         Calibrate.applyShadow()
+        
+        saveDataButton.applyGradient(colors: buttonColor())
+        saveDataButton.applyShadow()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

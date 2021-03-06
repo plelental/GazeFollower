@@ -20,6 +20,7 @@ class CalibrationController: BaseController,  ARSCNViewDelegate, ARSessionDelega
     
     private var isScreenTouched = false;
     private var step = 1
+    private let fileService = FileService()
     
     @objc func touchedScreen(touch: UITapGestureRecognizer) {
         isScreenTouched = true;
@@ -76,6 +77,7 @@ class CalibrationController: BaseController,  ARSCNViewDelegate, ARSessionDelega
             
             if self.isScreenTouched{
                 self.isScreenTouched = false
+                self.saveCalibrateDataPoint(calibrationPoint: cgp)
                 self.step += 1
                 if(self.step > 5){
                     self.step = 1
@@ -83,7 +85,33 @@ class CalibrationController: BaseController,  ARSCNViewDelegate, ARSessionDelega
             }
         })
     }
-
+    
+    func saveCalibrateDataPoint(calibrationPoint: CGPoint){
+        
+        guard let calibrationFile = fileService.getCalibrationFileUrl() else {
+            return
+        }
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
+        let timestamp = formatter.string(from: Date())
+     
+        let text = "date: \(timestamp) | calibration_point_x: \(calibrationPoint.x) | calibration_point_y: \(calibrationPoint.y) \n"
+        
+        guard let data = (text).data(using: String.Encoding.utf8) else { return }
+        
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+        if FileManager.default.fileExists(atPath: calibrationFile.path) {
+            if let fileHandle = try? FileHandle(forWritingTo: calibrationFile) {
+                fileHandle.seekToEndOfFile()
+                fileHandle.write(data)
+                fileHandle.closeFile()
+            }
+        } else {
+            try? data.write(to: calibrationFile, options: .atomicWrite)
+        }
+    }
+    
     func getPointCoordinates(calibrationStep: Int) -> (x: Float, y: Float){
         let height = Float(UIScreen.main.bounds.height)
         let width = Float(UIScreen.main.bounds.width)
