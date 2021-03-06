@@ -43,7 +43,6 @@ class GazePointController: BaseController, ARSCNViewDelegate, ARSessionDelegate 
         gazeView.session.pause()
     }
     
-    
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for faceAnchor: ARAnchor) {
         guard #available(iOS 12.0, *), let faceAnchor = faceAnchor as? ARFaceAnchor
         else {
