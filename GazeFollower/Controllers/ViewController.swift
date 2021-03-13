@@ -29,7 +29,7 @@ class ViewController: BaseController {
             let activityViewController = UIActivityViewController(activityItems: [data], applicationActivities: nil)
             present(activityViewController, animated: true, completion: nil)
         } catch {
-            let alert = UIAlertController(title: "No calibration data available", message: "To save the data, please first process the calibration step", preferredStyle: .alert)
+            let alert = UIAlertController(title: "No calibration data available", message: "To save the data, please first process the test step", preferredStyle: .alert)
 
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
 

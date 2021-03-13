@@ -22,7 +22,6 @@ class CalibrationController: BaseController, ARSCNViewDelegate, ARSessionDelegat
     private var step = 1
    
     private let fileService = FileService()
-    private let estimationPointService = EstimationPointService()
 
     private var cords = CGPoint()
    
@@ -47,8 +46,8 @@ class CalibrationController: BaseController, ARSCNViewDelegate, ARSessionDelegat
         let configuration = ARFaceTrackingConfiguration()
         configuration.isLightEstimationEnabled = true
         configuration.isWorldTrackingEnabled = true
-        configuration.worldAlignment = ARConfiguration.WorldAlignment.camera
-
+//        configuration.worldAlignment = ARConfiguration.WorldAlignment.camera
+        
         calibrationView.scene.background.contents = UIColor.white
         calibrationView.session.run(configuration)
     }
@@ -64,7 +63,7 @@ class CalibrationController: BaseController, ARSCNViewDelegate, ARSessionDelegat
             return
         }
         renderPoint(step: step)
-        cords = estimationPointService.getEstimationPointCoordinates(faceAnchor: faceAnchor, view: calibrationView)
+//        cords = estimationPointService.getEstimationPointCoordinates(faceAnchor: faceAnchor, view: calibrationView)
     }
    
     func renderPoint(step: Int) {
@@ -100,7 +99,7 @@ class CalibrationController: BaseController, ARSCNViewDelegate, ARSessionDelegat
         formatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
         let timestamp = formatter.string(from: Date())
 
-        let text = "date: \(timestamp) | calibration_point_x: \(calibrationPoint.x) | calibration_point_y: \(calibrationPoint.y) | estimated_point_x: \(cords.x) | estimated_point_y: \(cords.y) \n"
+        let text = "date: \(timestamp) | test_point_x: \(calibrationPoint.x) | test_point_y: \(calibrationPoint.y) | estimated_point_x: \(cords.x) | estimated_point_y: \(cords.y) \n"
 
         guard let data = (text).data(using: String.Encoding.utf8) else {
             return
