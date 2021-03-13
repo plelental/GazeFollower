@@ -14,7 +14,7 @@ class FaceModel {
     private var leftEye: SCNNode = SCNNode()
     private var rightEye: SCNNode = SCNNode()
     private var faceNode: SCNNode = SCNNode()
-    private var positions: Array<simd_float2> = Array()
+    private var estimationPoints: Array<CGPoint> = Array()
     
     private var deviceModel: DeviceModel = DeviceModel()
     
@@ -64,9 +64,15 @@ class FaceModel {
         let eyesYCords =  (-((leftEye!.y + rightEye!.y) / 2))
         let x =  eyesXCords / (deviceModel.deviceWidth / 2.0) * deviceModel.screenWidth
         let y = eyesYCords / (deviceModel.deviceHeight / 2.0) *  deviceModel.screenHeight + 312
+        let point = CGPoint(x: CGFloat(x), y: CGFloat(y))
         
-        // Todo implement smoothing
-        return CGPoint(x: CGFloat(x), y: CGFloat(y))
+        if(estimationPoints.count > 10){
+            estimationPoints.removeFirst()
+        }
+        estimationPoints.append(point)
+        let averagePoint =  Array(estimationPoints).average!
+        
+        return averagePoint
     }
     
     private func estimateEyesCoordinates() -> (leftEyeCoordinates: SCNVector3?, rightEyeCoordinates: SCNVector3?){

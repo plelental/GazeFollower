@@ -28,6 +28,7 @@
 		1D8F403B25C57A6B009F4146 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8F403A25C57A6B009F4146 /* CameraViewController.swift */; };
 		1D93D05425F3E1B900D23BD8 /* SCNVectorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D93D05325F3E1B900D23BD8 /* SCNVectorHelper.swift */; };
 		1DB8217725F7F13E0025DC4C /* FaceGeometryNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB8217625F7F13E0025DC4C /* FaceGeometryNode.swift */; };
+		1DB9F5C525FCE83200B7678E /* CGPointExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB9F5C425FCE83200B7678E /* CGPointExtension.swift */; };
 		1DF1BC9E25C4C82000C7175C /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF1BC9D25C4C82000C7175C /* UIButtonExtension.swift */; };
 		1DF1BCA325C4C86300C7175C /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF1BCA225C4C86300C7175C /* UIImageViewExtension.swift */; };
 /* End PBXBuildFile section */
@@ -77,6 +78,7 @@
 		1D8F403A25C57A6B009F4146 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		1D93D05325F3E1B900D23BD8 /* SCNVectorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNVectorHelper.swift; sourceTree = "<group>"; };
 		1DB8217625F7F13E0025DC4C /* FaceGeometryNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceGeometryNode.swift; sourceTree = "<group>"; };
+		1DB9F5C425FCE83200B7678E /* CGPointExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPointExtension.swift; sourceTree = "<group>"; };
 		1DF1BC9D25C4C82000C7175C /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		1DF1BCA225C4C86300C7175C /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -217,6 +219,7 @@
 				1D03380F25C5A39100751559 /* SCNReferenceNodeExtension.swift */,
 				1D12365125F380C0001F8795 /* UINavigationControllerExtension.swift */,
 				1D12366C25F39FFA001F8795 /* UIDeviceExtension.swift */,
+				1DB9F5C425FCE83200B7678E /* CGPointExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 				1D2EE72825ED9F0300547B78 /* GazePointController.swift in Sources */,
 				1D12365225F380C0001F8795 /* UINavigationControllerExtension.swift in Sources */,
 				1DB8217725F7F13E0025DC4C /* FaceGeometryNode.swift in Sources */,
+				1DB9F5C525FCE83200B7678E /* CGPointExtension.swift in Sources */,
 				1D134A5325C4B75E00408C11 /* ViewController.swift in Sources */,
 				1DF1BC9E25C4C82000C7175C /* UIButtonExtension.swift in Sources */,
 				1D134A5125C4B75E00408C11 /* AppDelegate.swift in Sources */,
