@@ -66,7 +66,7 @@ class FaceModel {
         let y = eyesYCords / (deviceModel.deviceHeight / 2.0) *  deviceModel.screenHeight + 312
         let point = CGPoint(x: CGFloat(x), y: CGFloat(y))
         
-        if(estimationPoints.count > 10){
+        if(estimationPoints.count > 25){
             estimationPoints.removeFirst()
         }
         estimationPoints.append(point)

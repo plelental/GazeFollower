@@ -14,7 +14,7 @@ class FileService {
             return nil
         }
 
-        let fileName = "gazefollower_calibration_data.txt"
+        let fileName = "gazefollower_calibration_data.json"
         return documentsDirectory.appendingPathComponent(fileName)
     }
 
