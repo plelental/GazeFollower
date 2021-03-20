@@ -7,6 +7,7 @@
 
 import Foundation
 import ARKit
+import AVFoundation
 
 class CalibrationController: BaseController, ARSCNViewDelegate, ARSessionDelegate {
     
@@ -18,6 +19,8 @@ class CalibrationController: BaseController, ARSCNViewDelegate, ARSessionDelegat
     private var faceModel: FaceModel!
     private var calibrationPointModel = CalibrationPointModel()
     private var calibrationDataPointService = CalibrationDataPointService()
+    private var isDepthDataCaptured = false
+    private var arFrame: ARFrame?
     
     @objc func touchedScreen(touch: UITapGestureRecognizer) {
         isScreenTouched = true;
@@ -25,6 +28,7 @@ class CalibrationController: BaseController, ARSCNViewDelegate, ARSessionDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpARSession(view: calibrationView)
         setUpARSCNView(view: calibrationView, viewDelegate: self, arSessionDelegate: self)
         faceModel = FaceModel(view: calibrationView)
         calibrationView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.touchedScreen(touch:))))
@@ -38,7 +42,6 @@ class CalibrationController: BaseController, ARSCNViewDelegate, ARSessionDelegat
     override func viewWillAppear(_ animated: Bool) {
         initNavigationBar()
         calibrationView.scene.background.contents = UIColor.white
-        setUpARSession(view: calibrationView)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -53,35 +56,38 @@ class CalibrationController: BaseController, ARSCNViewDelegate, ARSessionDelegat
         }
         
         faceModel.update(faceAnchor: faceAnchor, view: calibrationView, node: node)
-                
+        
         DispatchQueue.main.async(execute: { () -> Void in
             self.gazePoint.center = self.faceModel.estimationPointOnTheScreen
             self.calibrationPoint.center = self.calibrationPointModel.point
             
-            if self.isScreenTouched {
+            if self.isScreenTouched && self.isDepthDataCaptured {
                 self.isScreenTouched = false
+
                 self.calibrationDataPointService.saveCalibrateDataPoint(
                     calibrationPoint: self.calibrationPointModel.point,
                     estimationPoint: self.gazePoint.center,
                     distance: 0,
+                    arFrame: self.arFrame!,
                     calibrationStep: self.calibrationPointModel.calibrationStep ?? CalibrationStep.OutOfTheScreen)
-               
+                
                 self.calibrationPointModel.update()
             }
         })
     }
     
     private func renderScreenPoints() {
+        
         let screenGazePoint = ScreenPointModel(cornerRadius: 20,
-                                           shadowOpacity: 1,
-                                           shadowOffset: .zero,
-                                           shadowRadius: 20,
-                                           shadowPath: UIBezierPath(rect: gazePoint.bounds).cgPath,
-                                           width: 40,
-                                           height: 40,
-                                           x: 0,
-                                           y: 0,
-                                           backgroundColor: ColorHelper.UIColorFromRGB(0x1273DE))
+                                               shadowOpacity: 1,
+                                               shadowOffset: .zero,
+                                               shadowRadius: 20,
+                                               shadowPath: UIBezierPath(rect: gazePoint.bounds).cgPath,
+                                               width: 40,
+                                               height: 40,
+                                               x: 0,
+                                               y: 0,
+                                               backgroundColor: ColorHelper.UIColorFromRGB(0x1273DE))
         
         let screenCalibrationPoint = ScreenPointModel(cornerRadius: 25,
                                                       width: 50,
@@ -96,16 +102,15 @@ class CalibrationController: BaseController, ARSCNViewDelegate, ARSessionDelegat
     
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
-        
     }
     
-    func sessionWasInterrupted(_ session: ARSession) {
-        // Inform the user that the session has been interrupted, for example, by presenting an overlay
+    func session(_ session: ARSession, didUpdate frame: ARFrame) {
         
-    }
-    
-    func sessionInterruptionEnded(_ session: ARSession) {
-        // Reset tracking and/or remove existing anchors if consistent tracking is required
-        
-    }
-}
+        if (frame.capturedDepthData != nil){
+            arFrame = frame
+            isDepthDataCaptured = true
+            
+        }else{
+            isDepthDataCaptured = false
+        }
+    }}
