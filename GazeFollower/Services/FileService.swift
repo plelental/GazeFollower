@@ -9,13 +9,11 @@ import Foundation
 
 class FileService {
 
-    func getCalibrationFileUrl() -> URL? {
+    func getFileUrl(fileName: String) -> URL? {
         guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
             return nil
         }
 
-        let fileName = "gazefollower_calibration_data.json"
         return documentsDirectory.appendingPathComponent(fileName)
     }
-
 }

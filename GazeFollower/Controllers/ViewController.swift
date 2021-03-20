@@ -21,7 +21,7 @@ class ViewController: BaseController {
     private let fileService = FileService()
 
     @IBAction func onClick(_ sender: UIButton, forEvent event: UIEvent) {
-        guard let url = fileService.getCalibrationFileUrl() else {
+        guard let url = fileService.getFileUrl(fileName: "gazefollower_calibration_data.json") else {
             return
         }
         do {

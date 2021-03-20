@@ -17,9 +17,13 @@ class CalibrationDataModel: Codable {
     public var estimationPointY: Float
     public var distanceFromDevice: Float
     public var depthDataFileName: String
-    public var faceMaskPhotoFileName: String
     public var standardPhotoFileName: String
     public var calibrationStep: String
+    public var depthDataQuality: String
+    public var depthDataAccuracy: String
+    public var isDepthDataFiltered: Bool
+    public var depthDataType: String
+    
     
     init(
         date: String,
@@ -29,9 +33,12 @@ class CalibrationDataModel: Codable {
         estimationPointY: Float,
         distanceFromDevice: Float,
         depthDataFileName: String,
-        faceMaskPhotoFileName: String,
         standardPhotoFileName: String,
-        calibrationStep: String) {
+        calibrationStep: String,
+        depthDataQuality: String,
+        depthDataAccuracy: String,
+        isDepthDataFiltered: Bool,
+        depthDataType: String) {
         self.date = date
         self.testPointX = testPointX
         self.testPointY = testPointY
@@ -39,9 +46,12 @@ class CalibrationDataModel: Codable {
         self.estimationPointY = estimationPointY
         self.distanceFromDevice = distanceFromDevice
         self.depthDataFileName = depthDataFileName
-        self.faceMaskPhotoFileName = faceMaskPhotoFileName
         self.standardPhotoFileName = standardPhotoFileName
         self.calibrationStep = calibrationStep
+        self.depthDataQuality = depthDataQuality
+        self.depthDataAccuracy = depthDataAccuracy
+        self.isDepthDataFiltered = isDepthDataFiltered
+        self.depthDataType = depthDataType
     }
     
 }
