@@ -63,13 +63,13 @@ class CalibrationController: BaseController, ARSCNViewDelegate, ARSessionDelegat
             
             if self.isScreenTouched && self.isDepthDataCaptured {
                 self.isScreenTouched = false
-
+                
                 self.calibrationDataPointService.saveCalibrateDataPoint(
                     calibrationPoint: self.calibrationPointModel.point,
                     estimationPoint: self.gazePoint.center,
-                    distance: 0,
+                    distance: self.faceModel.distanceFromDevice(),
                     arFrame: self.arFrame!,
-                    calibrationStep: self.calibrationPointModel.calibrationStep ?? CalibrationStep.OutOfTheScreen)
+                    calibrationStep: self.calibrationPointModel.calibrationStep ?? CalibrationStepEnum.OutOfTheScreen)
                 
                 self.calibrationPointModel.update()
             }
@@ -78,23 +78,25 @@ class CalibrationController: BaseController, ARSCNViewDelegate, ARSessionDelegat
     
     private func renderScreenPoints() {
         
-        let screenGazePoint = ScreenPointModel(cornerRadius: 20,
-                                               shadowOpacity: 1,
-                                               shadowOffset: .zero,
-                                               shadowRadius: 20,
-                                               shadowPath: UIBezierPath(rect: gazePoint.bounds).cgPath,
-                                               width: 40,
-                                               height: 40,
-                                               x: 0,
-                                               y: 0,
-                                               backgroundColor: ColorHelper.UIColorFromRGB(0x1273DE))
+        let screenGazePoint = ScreenPointModel(
+            cornerRadius: 20,
+            shadowOpacity: 1,
+            shadowOffset: .zero,
+            shadowRadius: 20,
+            shadowPath: UIBezierPath(rect: gazePoint.bounds).cgPath,
+            width: 40,
+            height: 40,
+            x: 0,
+            y: 0,
+            backgroundColor: ColorHelper.UIColorFromRGB(0x1273DE))
         
-        let screenCalibrationPoint = ScreenPointModel(cornerRadius: 25,
-                                                      width: 50,
-                                                      height: 50,
-                                                      x: 0,
-                                                      y: 100,
-                                                      backgroundColor: UIColor.red)
+        let screenCalibrationPoint = ScreenPointModel(
+            cornerRadius: 25,
+            width: 50,
+            height: 50,
+            x: 0,
+            y: 100,
+            backgroundColor: UIColor.red)
         
         setUpAndRenderPointOnTheScreen(uiView: gazePoint, arView: calibrationView, screenPoint: screenGazePoint)
         setUpAndRenderPointOnTheScreen(uiView: calibrationPoint, arView: calibrationView, screenPoint: screenCalibrationPoint)

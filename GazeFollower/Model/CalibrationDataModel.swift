@@ -10,14 +10,13 @@ import ARKit
 
 class CalibrationDataModel: Codable {
     
+    public var uuid: String
     public var date: String
     public var testPointX: Float
     public var testPointY: Float
     public var estimationPointX: Float
     public var estimationPointY: Float
     public var distanceFromDevice: Float
-    public var depthDataFileName: String
-    public var standardPhotoFileName: String
     public var calibrationStep: String
     public var depthDataQuality: String
     public var depthDataAccuracy: String
@@ -26,27 +25,25 @@ class CalibrationDataModel: Codable {
     
     
     init(
+        uuid: String,
         date: String,
         testPointX: Float,
         testPointY: Float,
         estimationPointX: Float,
         estimationPointY: Float,
         distanceFromDevice: Float,
-        depthDataFileName: String,
-        standardPhotoFileName: String,
         calibrationStep: String,
         depthDataQuality: String,
         depthDataAccuracy: String,
         isDepthDataFiltered: Bool,
         depthDataType: String) {
+        self.uuid = uuid
         self.date = date
         self.testPointX = testPointX
         self.testPointY = testPointY
         self.estimationPointX = estimationPointX
         self.estimationPointY = estimationPointY
         self.distanceFromDevice = distanceFromDevice
-        self.depthDataFileName = depthDataFileName
-        self.standardPhotoFileName = standardPhotoFileName
         self.calibrationStep = calibrationStep
         self.depthDataQuality = depthDataQuality
         self.depthDataAccuracy = depthDataAccuracy

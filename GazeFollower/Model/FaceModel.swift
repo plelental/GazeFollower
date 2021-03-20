@@ -35,6 +35,13 @@ class FaceModel {
         estimationPointOnTheScreen = estimateEyesPositionOnDeviceScreen()
     }
     
+    func distanceFromDevice() -> Float {
+        let leftEyeDistanceFromDevice = (leftEye.worldPosition - SCNVector3Zero).length()
+        let rightEyeDistanceFromDevice = (rightEye.worldPosition - SCNVector3Zero).length()
+        let avarageDistance = (leftEyeDistanceFromDevice + rightEyeDistanceFromDevice) / 2
+        return round(avarageDistance * 100)
+    }
+    
     private func setUpEyes(view:ARSCNView) {
         leftEye.opacity = 0
         rightEye.opacity = 0
