@@ -8,7 +8,7 @@
 import Foundation
 
 
-enum CalibrationStep: Int, CaseIterable {
+enum CalibrationStepEnum: Int, CaseIterable {
     
     case OutOfTheScreen = 0
     case LeftUpperCorner = 1

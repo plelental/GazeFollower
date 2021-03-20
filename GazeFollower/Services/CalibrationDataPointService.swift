@@ -12,34 +12,33 @@ class CalibrationDataPointService {
     
     private var fileService = FileService()
     
-    func saveCalibrateDataPoint(calibrationPoint: CGPoint, estimationPoint: CGPoint, distance: Float, arFrame: ARFrame, calibrationStep: CalibrationStep) {
+    func saveCalibrateDataPoint(calibrationPoint: CGPoint, estimationPoint: CGPoint, distance: Float, arFrame: ARFrame, calibrationStep: CalibrationStepEnum) {
         
-        let fileName = "gazefollower_calibration_data.json"
-        guard let calibrationFile = fileService.getFileUrl(fileName: fileName) else {
+        guard let calibrationFile = fileService.getFileUrl(fileName: Constants.calibrationDataFileName) else {
             return
         }
         
+        let uuid = UUID().uuidString.lowercased()
         let formatter = DateFormatter()
         formatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
         let timestamp = formatter.string(from: Date())
         let depthData = arFrame.capturedDepthData
-        let depthImageName = saveBufferAsJpegImageAndGetFileName(image: arFrame.capturedDepthData!.depthDataMap, timestamp: timestamp, type: "depth")
-        let imageName = saveBufferAsJpegImageAndGetFileName(image: arFrame.capturedImage, timestamp: timestamp, type: "image")
+        saveBufferAsJpegImage(image: arFrame.capturedDepthData!.depthDataMap, fileName: uuid, type:  Constants.depthType)
+        saveBufferAsJpegImage(image: arFrame.capturedImage, fileName: uuid, type: Constants.imageType)
         
-
-        let calibrationPointModel = CalibrationDataModel(date: timestamp,
-                                                         testPointX: Float(calibrationPoint.x),
-                                                         testPointY: Float(calibrationPoint.y),
-                                                         estimationPointX: Float(estimationPoint.x),
-                                                         estimationPointY: Float(estimationPoint.y),
-                                                         distanceFromDevice: distance,
-                                                         depthDataFileName: depthImageName,
-                                                         standardPhotoFileName: imageName,
-                                                         calibrationStep: calibrationStep.rawValue.description,
-                                                         depthDataQuality: String(depthData!.depthDataQuality.rawValue.description),
-                                                         depthDataAccuracy: String(depthData!.depthDataAccuracy.rawValue.description),
-                                                         isDepthDataFiltered: depthData!.isDepthDataFiltered,
-                                                         depthDataType: String(depthData!.depthDataType))
+        let calibrationPointModel = CalibrationDataModel(
+            uuid: uuid,
+            date: timestamp,
+            testPointX: Float(calibrationPoint.x),
+            testPointY: Float(calibrationPoint.y),
+            estimationPointX: Float(estimationPoint.x),
+            estimationPointY: Float(estimationPoint.y),
+            distanceFromDevice: distance,
+            calibrationStep: calibrationStep.rawValue.description,
+            depthDataQuality: String(depthData!.depthDataQuality.rawValue.description),
+            depthDataAccuracy: String(depthData!.depthDataAccuracy.rawValue.description),
+            isDepthDataFiltered: depthData!.isDepthDataFiltered,
+            depthDataType: String(depthData!.depthDataType))
         
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
@@ -63,12 +62,12 @@ class CalibrationDataPointService {
         }
     }
     
-    private func saveBufferAsJpegImageAndGetFileName(image: CVPixelBuffer, timestamp: String, type: String) -> String {
-        let fileName = "\(timestamp)_\(type).jpg"
+    private func saveBufferAsJpegImage(image: CVPixelBuffer, fileName: String, type: String) {
+        let fileName = "\(fileName)_\(type).jpg"
         let fileUrl = fileService.getFileUrl(fileName: fileName)
         let image = UIImage(ciImage: CIImage(cvPixelBuffer: image))
         if let data = image.jpegData(compressionQuality: 0.8){
             try? data.write(to: fileUrl!)
         }
-        return fileName    }
+    }
 }

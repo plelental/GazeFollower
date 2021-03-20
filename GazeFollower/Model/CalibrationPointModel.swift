@@ -12,13 +12,13 @@ class CalibrationPointModel {
   
     private var step = 1;
     public var point: CGPoint = CGPoint(x: 25, y: 150)
-    public var calibrationStep = CalibrationStep(rawValue: 1)
+    public var calibrationStep = CalibrationStepEnum(rawValue: 1)
     
     func update(){
         step += 1
-        calibrationStep = CalibrationStep(rawValue: step)
+        calibrationStep = CalibrationStepEnum(rawValue: step)
         
-        if (step > CalibrationStep.allCases.count - 1) {
+        if (step > CalibrationStepEnum.allCases.count - 1) {
             step = 1
         }
         
@@ -30,15 +30,15 @@ class CalibrationPointModel {
         let width = Float(UIScreen.main.bounds.width)
         
         switch calibrationStep {
-        case CalibrationStep.LeftUpperCorner.getStep():
+        case CalibrationStepEnum.LeftUpperCorner.getStep():
             return CGPoint(x: 25, y: 150)
-        case CalibrationStep.LeftBottomCorner.getStep():
+        case CalibrationStepEnum.LeftBottomCorner.getStep():
             return CGPoint(x: 25, y: Int(height - 150))
-        case CalibrationStep.RightBottomCorner.getStep():
+        case CalibrationStepEnum.RightBottomCorner.getStep():
             return CGPoint(x: Int(width - 25), y: Int(height - 150))
-        case CalibrationStep.RightUpperCorner.getStep():
+        case CalibrationStepEnum.RightUpperCorner.getStep():
             return CGPoint(x: Int(width - 25), y: Int(150))
-        case CalibrationStep.Center.getStep():
+        case CalibrationStepEnum.Center.getStep():
             return CGPoint(x: Int((width) / 2), y: Int((height) / 2))
         default:
             return CGPoint(x: Int(-1),y: Int(-1))

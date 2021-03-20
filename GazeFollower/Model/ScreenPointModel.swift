@@ -22,7 +22,8 @@ class ScreenPointModel {
     public var backgroundColor: UIColor
     public var withShadowing: Bool
     
-    internal init(cornerRadius: CGFloat? = nil,
+    internal init(
+        cornerRadius: CGFloat? = nil,
                   shadowOpacity: Float? = nil,
                   shadowOffset: CGSize? = nil,
                   shadowRadius: CGFloat? = nil,
