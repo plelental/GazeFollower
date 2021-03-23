@@ -21,6 +21,7 @@ class CalibrationController: BaseController, ARSCNViewDelegate, ARSessionDelegat
     private var calibrationDataPointService = CalibrationDataPointService()
     private var isDepthDataCaptured = false
     private var arFrame: ARFrame?
+    private var startTimeOfCalibration: DispatchTime?
     
     @objc func touchedScreen(touch: UITapGestureRecognizer) {
         isScreenTouched = true;
@@ -37,6 +38,7 @@ class CalibrationController: BaseController, ARSCNViewDelegate, ARSessionDelegat
     override func viewDidAppear(_ animated: Bool) {
         setUpNavigationBarAfterAppear(hidden: false, animated: animated)
         renderScreenPoints()
+        startTimeOfCalibration = DispatchTime.now()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,15 +65,19 @@ class CalibrationController: BaseController, ARSCNViewDelegate, ARSessionDelegat
             
             if self.isScreenTouched && self.isDepthDataCaptured {
                 self.isScreenTouched = false
+                let endTimeOfCalibration = DispatchTime.now()
+                let elapsedTime = endTimeOfCalibration.uptimeNanoseconds - self.startTimeOfCalibration!.uptimeNanoseconds
                 
                 self.calibrationDataPointService.saveCalibrateDataPoint(
                     calibrationPoint: self.calibrationPointModel.point,
                     estimationPoint: self.gazePoint.center,
                     distance: self.faceModel.distanceFromDevice(),
                     arFrame: self.arFrame!,
-                    calibrationStep: self.calibrationPointModel.calibrationStep ?? CalibrationStepEnum.OutOfTheScreen)
+                    calibrationStep: self.calibrationPointModel.calibrationStep ?? CalibrationStepEnum.OutOfTheScreen,
+                    elapsedTime: elapsedTime)
                 
                 self.calibrationPointModel.update()
+                self.startTimeOfCalibration = DispatchTime.now()
             }
         })
     }

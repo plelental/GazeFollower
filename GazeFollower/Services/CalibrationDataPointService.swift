@@ -12,20 +12,29 @@ class CalibrationDataPointService {
     
     private var fileService = FileService()
     
-    func saveCalibrateDataPoint(calibrationPoint: CGPoint, estimationPoint: CGPoint, distance: Float, arFrame: ARFrame, calibrationStep: CalibrationStepEnum) {
+    func saveCalibrateDataPoint(calibrationPoint: CGPoint,
+                                estimationPoint: CGPoint,
+                                distance: Float,
+                                arFrame: ARFrame,
+                                calibrationStep: CalibrationStepEnum,
+                                elapsedTime: UInt64) {
         
         guard let calibrationFile = fileService.getFileUrl(fileName: Constants.calibrationDataFileName) else {
             return
         }
         
         let uuid = UUID().uuidString.lowercased()
+     
         let formatter = DateFormatter()
         formatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
         let timestamp = formatter.string(from: Date())
+      
         let depthData = arFrame.capturedDepthData
+        let elapsedTimeInSeconds = Double(elapsedTime) / 1_000_000_000.0
+        
         saveBufferAsJpegImage(image: arFrame.capturedDepthData!.depthDataMap, fileName: uuid, type:  Constants.depthType)
         saveBufferAsJpegImage(image: arFrame.capturedImage, fileName: uuid, type: Constants.imageType)
-        
+
         let calibrationPointModel = CalibrationDataModel(
             uuid: uuid,
             date: timestamp,
@@ -34,11 +43,12 @@ class CalibrationDataPointService {
             estimationPointX: Float(estimationPoint.x),
             estimationPointY: Float(estimationPoint.y),
             distanceFromDevice: distance,
-            calibrationStep: calibrationStep.rawValue.description,
-            depthDataQuality: String(depthData!.depthDataQuality.rawValue.description),
-            depthDataAccuracy: String(depthData!.depthDataAccuracy.rawValue.description),
+            calibrationStep: calibrationStep.rawValue,
+            depthDataQuality: depthData!.depthDataQuality.rawValue,
+            depthDataAccuracy: depthData!.depthDataAccuracy.rawValue,
             isDepthDataFiltered: depthData!.isDepthDataFiltered,
-            depthDataType: String(depthData!.depthDataType))
+            depthDataType: String(depthData!.depthDataType),
+            elapsedTime: Float(elapsedTimeInSeconds))
         
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
