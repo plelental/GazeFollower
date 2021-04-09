@@ -67,10 +67,12 @@ class FaceModel {
             return CGPoint()
         }
         
+        let lengthFromCameraToTheCenterOfScreenY = Float(deviceModel.screenHeight / 2)
+        let lengthFromCameraToTheCenterOfScreenX = Float(deviceModel.screenWidth / 2)
         let eyesXCords = ((leftEye!.x + rightEye!.x) / 2)
         let eyesYCords =  (-((leftEye!.y + rightEye!.y) / 2))
-        let x =  eyesXCords / (deviceModel.deviceWidth / 2.0) * deviceModel.screenWidth
-        let y = eyesYCords / (deviceModel.deviceHeight / 2.0) *  deviceModel.screenHeight + 312
+        let x =  eyesXCords / (deviceModel.deviceWidth / 2.0) * deviceModel.screenWidth + lengthFromCameraToTheCenterOfScreenX
+        let y = eyesYCords / (deviceModel.deviceHeight / 2.0) *  deviceModel.screenHeight + lengthFromCameraToTheCenterOfScreenY
         let point = CGPoint(x: CGFloat(x), y: CGFloat(y))
         
         if(estimationPoints.count > 25){
