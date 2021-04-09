@@ -20,6 +20,7 @@ class CalibrationPointModel {
         
         if (step > CalibrationStepEnum.allCases.count - 1) {
             step = 1
+            calibrationStep = CalibrationStepEnum.LeftUpperCorner
         }
         
         point = getPointCoordinates(calibrationStep: step)
