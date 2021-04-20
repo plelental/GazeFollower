@@ -7,11 +7,11 @@
 
 import Foundation
 import ARKit
-import AVFoundation
 
-class CalibrationController: BaseController, ARSCNViewDelegate, ARSessionDelegate {
+class CalibrationController: BaseController, ARSCNViewDelegate,ARSessionDelegate {
     
     @IBOutlet weak var calibrationView: ARSCNView!
+    @IBOutlet weak var counterOfSteps: UILabel!
     
     private var isScreenTouched = false;
     private var gazePoint : UIView = UIView()
@@ -22,9 +22,12 @@ class CalibrationController: BaseController, ARSCNViewDelegate, ARSessionDelegat
     private var isDepthDataCaptured = false
     private var arFrame: ARFrame?
     private var startTimeOfCalibration: DispatchTime?
+    private var counter: Int = 0
+    private var distance: Float = 0
     
     @objc func touchedScreen(touch: UITapGestureRecognizer) {
         isScreenTouched = true;
+        counter += 1
     }
     
     override func viewDidLoad() {
@@ -62,7 +65,8 @@ class CalibrationController: BaseController, ARSCNViewDelegate, ARSessionDelegat
         DispatchQueue.main.async(execute: { () -> Void in
             self.gazePoint.center = self.faceModel.estimationPointOnTheScreen
             self.calibrationPoint.center = self.calibrationPointModel.point
-            
+            self.distance = self.faceModel.distanceFromDevice()
+            self.counterOfSteps.text = "Step: " + String(self.counter) + " Distance: " + String(self.distance) + "cm"
             if self.isScreenTouched && self.isDepthDataCaptured {
                 self.isScreenTouched = false
                 let endTimeOfCalibration = DispatchTime.now()

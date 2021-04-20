@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SceneKit
 import ARKit
 
 class FaceModel {
@@ -54,7 +53,8 @@ class FaceModel {
     
     private func getEyePositionChildNode() -> SCNNode {
         let eyePositionNode = SCNNode()
-        eyePositionNode.position.z = 1
+        eyePositionNode.opacity = 0
+        eyePositionNode.position.z = 2
         return eyePositionNode
     }
     
@@ -68,14 +68,14 @@ class FaceModel {
         }
         
         let lengthFromCameraToTheCenterOfScreenY = Float(deviceModel.screenHeight / 2)
-        let lengthFromCameraToTheCenterOfScreenX = Float(deviceModel.screenWidth / 2)
         let eyesXCords = ((leftEye!.x + rightEye!.x) / 2)
         let eyesYCords =  (-((leftEye!.y + rightEye!.y) / 2))
-        let x =  eyesXCords / (deviceModel.deviceWidth / 2.0) * deviceModel.screenWidth + lengthFromCameraToTheCenterOfScreenX
+        
+        let x =  eyesXCords / (deviceModel.deviceWidth / 2.0) * deviceModel.screenWidth
         let y = eyesYCords / (deviceModel.deviceHeight / 2.0) *  deviceModel.screenHeight + lengthFromCameraToTheCenterOfScreenY
         let point = CGPoint(x: CGFloat(x), y: CGFloat(y))
         
-        if(estimationPoints.count > 25){
+        if(estimationPoints.count > (Int(distanceFromDevice() / 2))){
             estimationPoints.removeFirst()
         }
         estimationPoints.append(point)
@@ -97,9 +97,17 @@ class FaceModel {
     }
     
     private func getEyeHittingResults(deviceScreenNode: SCNNode, eye: SCNNode) -> Array<SCNHitTestResult>{
+      
+        let options : [String: Any] = [SCNHitTestOption.backFaceCulling.rawValue: false,
+                                       SCNHitTestOption.searchMode.rawValue: 1,
+                                       SCNHitTestOption.ignoreLightArea.rawValue: true,
+                                       SCNHitTestOption.boundingBoxOnly.rawValue: true,
+                                       SCNHitTestOption.ignoreChildNodes.rawValue : false,
+                                       SCNHitTestOption.ignoreHiddenNodes.rawValue : false]
+        
         let eyeDevicePosition = deviceScreenNode.convertPosition(eye.worldPosition, to: nil)
         let eyeTargetDevicePosition = deviceScreenNode.convertPosition(eye.childNodes[0].worldPosition, to: nil)
-        let eyeHittingTestResult = deviceScreenNode.hitTestWithSegment(from: eyeDevicePosition, to: eyeTargetDevicePosition)
+        let eyeHittingTestResult = deviceScreenNode.hitTestWithSegment(from: eyeDevicePosition, to: eyeTargetDevicePosition,options: options)
         
         return eyeHittingTestResult
     }

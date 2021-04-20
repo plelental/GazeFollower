@@ -184,7 +184,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KfW-CO-ond" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3209" y="-300"/>
+            <point key="canvasLocation" x="2690" y="542"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="RCb-i2-0Zx">
@@ -202,7 +202,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BpH-5K-npS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1043" y="542"/>
+            <point key="canvasLocation" x="1135" y="542"/>
         </scene>
         <!--Gaze Point Controller-->
         <scene sceneID="BZD-Y2-LdL">
@@ -227,7 +227,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0fK-R0-yoF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3910" y="463"/>
+            <point key="canvasLocation" x="3448" y="542"/>
         </scene>
         <!--Calibration Controller-->
         <scene sceneID="uk5-IQ-iHG">
@@ -238,9 +238,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iEp-DG-t8E" userLabel="Calibration View">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="822"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </arscnView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Step: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gmH-qE-Z1E">
+                                <rect key="frame" x="20" y="841" width="374" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="82U-ZL-ual"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -248,11 +255,12 @@
                     <navigationItem key="navigationItem" id="Dci-PC-unE"/>
                     <connections>
                         <outlet property="calibrationView" destination="iEp-DG-t8E" id="lad-hf-psP"/>
+                        <outlet property="counterOfSteps" destination="gmH-qE-Z1E" id="dPS-6Z-xd7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iCt-Cc-aLY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1919" y="1396"/>
+            <point key="canvasLocation" x="4207.2463768115949" y="541.74107142857144"/>
         </scene>
     </scenes>
     <resources>

@@ -51,6 +51,9 @@ class GazePointController: BaseController, ARSCNViewDelegate, ARSessionDelegate 
         DispatchQueue.main.async(execute: {() -> Void in
             self.gazePoint.center = self.faceModel.estimationPointOnTheScreen
         })
+
+        node.geometry = ARSCNFaceGeometry(device:  gazeView.device!)
+        node.geometry?.firstMaterial?.fillMode = .lines
     }
     
     private func renderScreenPoint() {
