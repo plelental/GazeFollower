@@ -54,7 +54,7 @@ class FaceModel {
     private func getEyePositionChildNode() -> SCNNode {
         let eyePositionNode = SCNNode()
         eyePositionNode.opacity = 0
-        eyePositionNode.position.z = 2
+        eyePositionNode.position.z = 1
         return eyePositionNode
     }
     

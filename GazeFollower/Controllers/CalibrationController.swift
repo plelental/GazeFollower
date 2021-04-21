@@ -24,6 +24,7 @@ class CalibrationController: BaseController, ARSCNViewDelegate,ARSessionDelegate
     private var startTimeOfCalibration: DispatchTime?
     private var counter: Int = 0
     private var distance: Float = 0
+    private var canProcess = true
     
     @objc func touchedScreen(touch: UITapGestureRecognizer) {
         isScreenTouched = true;
@@ -42,6 +43,7 @@ class CalibrationController: BaseController, ARSCNViewDelegate,ARSessionDelegate
         setUpNavigationBarAfterAppear(hidden: false, animated: animated)
         renderScreenPoints()
         startTimeOfCalibration = DispatchTime.now()
+        UIApplication.shared.isIdleTimerDisabled = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,23 +69,45 @@ class CalibrationController: BaseController, ARSCNViewDelegate,ARSessionDelegate
             self.calibrationPoint.center = self.calibrationPointModel.point
             self.distance = self.faceModel.distanceFromDevice()
             self.counterOfSteps.text = "Step: " + String(self.counter) + " Distance: " + String(self.distance) + "cm"
+          
+            guard let mouthPucker = faceAnchor.blendShapes[.mouthPucker] else {
+                return
+            }
+            
+            if self.canProcess  && self.isDepthDataCaptured {
+                if mouthPucker.floatValue > 0.5 {
+                    self.canProcess = false
+                    self.counter += 1
+                    self.saveData()
+                }
+                
+            }else{
+                if mouthPucker.floatValue < 0.4 {
+                    self.canProcess = true
+                }
+            }
+                
             if self.isScreenTouched && self.isDepthDataCaptured {
                 self.isScreenTouched = false
-                let endTimeOfCalibration = DispatchTime.now()
-                let elapsedTime = endTimeOfCalibration.uptimeNanoseconds - self.startTimeOfCalibration!.uptimeNanoseconds
-                
-                self.calibrationDataPointService.saveCalibrateDataPoint(
-                    calibrationPoint: self.calibrationPointModel.point,
-                    estimationPoint: self.gazePoint.center,
-                    distance: self.faceModel.distanceFromDevice(),
-                    arFrame: self.arFrame!,
-                    calibrationStep: self.calibrationPointModel.calibrationStep ?? CalibrationStepEnum.OutOfTheScreen,
-                    elapsedTime: elapsedTime)
-                
-                self.calibrationPointModel.update()
-                self.startTimeOfCalibration = DispatchTime.now()
+                self.saveData()
             }
         })
+    }
+    
+    private func saveData(){
+        let endTimeOfCalibration = DispatchTime.now()
+        let elapsedTime = endTimeOfCalibration.uptimeNanoseconds - self.startTimeOfCalibration!.uptimeNanoseconds
+        
+        self.calibrationDataPointService.saveCalibrateDataPoint(
+            calibrationPoint: self.calibrationPointModel.point,
+            estimationPoint: self.gazePoint.center,
+            distance: self.faceModel.distanceFromDevice(),
+            arFrame: self.arFrame!,
+            calibrationStep: self.calibrationPointModel.calibrationStep ?? CalibrationStepEnum.OutOfTheScreen,
+            elapsedTime: elapsedTime)
+        
+        self.calibrationPointModel.update()
+        self.startTimeOfCalibration = DispatchTime.now()
     }
     
     private func renderScreenPoints() {
