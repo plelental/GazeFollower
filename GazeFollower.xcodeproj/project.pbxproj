@@ -24,12 +24,13 @@
 		1D134A5D25C4B76000408C11 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D134A5B25C4B76000408C11 /* LaunchScreen.storyboard */; };
 		1D134A6825C4B76100408C11 /* GazeFollowerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D134A6725C4B76100408C11 /* GazeFollowerTests.swift */; };
 		1D134A7325C4B76100408C11 /* GazeFollowerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D134A7225C4B76100408C11 /* GazeFollowerUITests.swift */; };
-		1D2EE72825ED9F0300547B78 /* GazePointController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2EE72725ED9F0300547B78 /* GazePointController.swift */; };
+		1D2EE72825ED9F0300547B78 /* ReadingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2EE72725ED9F0300547B78 /* ReadingController.swift */; };
 		1D4A2AC426064DD0008BC231 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4A2AC326064DD0008BC231 /* Constants.swift */; };
 		1D4A2AC926066670008BC231 /* SCNVector3Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4A2AC826066670008BC231 /* SCNVector3Extension.swift */; };
 		1D8F403B25C57A6B009F4146 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8F403A25C57A6B009F4146 /* CameraViewController.swift */; };
 		1D93D05425F3E1B900D23BD8 /* SCNVectorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D93D05325F3E1B900D23BD8 /* SCNVectorHelper.swift */; };
 		1DB9F5C525FCE83200B7678E /* CGPointExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB9F5C425FCE83200B7678E /* CGPointExtension.swift */; };
+		1DD0F3C726BB0C2C00E20D85 /* WebBrowserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0F3C626BB0C2C00E20D85 /* WebBrowserController.swift */; };
 		1DF1BC9E25C4C82000C7175C /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF1BC9D25C4C82000C7175C /* UIButtonExtension.swift */; };
 		1DF1BCA325C4C86300C7175C /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF1BCA225C4C86300C7175C /* UIImageViewExtension.swift */; };
 		1DFC706D25FE1D8D0095D45A /* CalibrationPointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFC706C25FE1D8D0095D45A /* CalibrationPointModel.swift */; };
@@ -80,12 +81,13 @@
 		1D134A6E25C4B76100408C11 /* GazeFollowerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GazeFollowerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D134A7225C4B76100408C11 /* GazeFollowerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GazeFollowerUITests.swift; sourceTree = "<group>"; };
 		1D134A7425C4B76100408C11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1D2EE72725ED9F0300547B78 /* GazePointController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GazePointController.swift; sourceTree = "<group>"; };
+		1D2EE72725ED9F0300547B78 /* ReadingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingController.swift; sourceTree = "<group>"; };
 		1D4A2AC326064DD0008BC231 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1D4A2AC826066670008BC231 /* SCNVector3Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNVector3Extension.swift; sourceTree = "<group>"; };
 		1D8F403A25C57A6B009F4146 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		1D93D05325F3E1B900D23BD8 /* SCNVectorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNVectorHelper.swift; sourceTree = "<group>"; };
 		1DB9F5C425FCE83200B7678E /* CGPointExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPointExtension.swift; sourceTree = "<group>"; };
+		1DD0F3C626BB0C2C00E20D85 /* WebBrowserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebBrowserController.swift; sourceTree = "<group>"; };
 		1DF1BC9D25C4C82000C7175C /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		1DF1BCA225C4C86300C7175C /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		1DFC706C25FE1D8D0095D45A /* CalibrationPointModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationPointModel.swift; sourceTree = "<group>"; };
@@ -127,7 +129,8 @@
 				1D12364C25F37E65001F8795 /* BaseController.swift */,
 				1D134A5225C4B75E00408C11 /* ViewController.swift */,
 				1D8F403A25C57A6B009F4146 /* CameraViewController.swift */,
-				1D2EE72725ED9F0300547B78 /* GazePointController.swift */,
+				1D2EE72725ED9F0300547B78 /* ReadingController.swift */,
+				1DD0F3C626BB0C2C00E20D85 /* WebBrowserController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -378,7 +381,7 @@
 				1D00439325FCA134000C89AD /* FaceModel.swift in Sources */,
 				1D12365D25F38859001F8795 /* CalibrationController.swift in Sources */,
 				1D12365825F38182001F8795 /* ColorHelper.swift in Sources */,
-				1D2EE72825ED9F0300547B78 /* GazePointController.swift in Sources */,
+				1D2EE72825ED9F0300547B78 /* ReadingController.swift in Sources */,
 				1D4A2AC426064DD0008BC231 /* Constants.swift in Sources */,
 				1DFC707725FE2E690095D45A /* CalibrationStepEnum.swift in Sources */,
 				1D12365225F380C0001F8795 /* UINavigationControllerExtension.swift in Sources */,
@@ -395,6 +398,7 @@
 				1D4A2AC926066670008BC231 /* SCNVector3Extension.swift in Sources */,
 				1D12367825F3BFF7001F8795 /* FileService.swift in Sources */,
 				1D8F403B25C57A6B009F4146 /* CameraViewController.swift in Sources */,
+				1DD0F3C726BB0C2C00E20D85 /* WebBrowserController.swift in Sources */,
 				1DFC706D25FE1D8D0095D45A /* CalibrationPointModel.swift in Sources */,
 				1D00439B25FCB996000C89AD /* DeviceModel.swift in Sources */,
 			);

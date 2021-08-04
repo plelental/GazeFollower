@@ -12,3 +12,4 @@ struct Constants {
     static let depthType = "depth"
     static let imageType = "image"
 }
+

@@ -9,11 +9,11 @@ import Foundation
 import UIKit
 import SceneKit
 
-func + (first: CGPoint, second: CGPoint) -> CGPoint {
+func +(first: CGPoint, second: CGPoint) -> CGPoint {
     return CGPoint(x: first.x + second.x, y: first.y + second.y)
 }
 
-func / (first: CGPoint, second: CGFloat) -> CGPoint {
+func /(first: CGPoint, second: CGFloat) -> CGPoint {
     return CGPoint(x: first.x / second, y: first.y / second)
 }
 

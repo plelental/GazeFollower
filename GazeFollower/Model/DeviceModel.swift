@@ -18,6 +18,7 @@ class DeviceModel {
     
     init() {
         deviceWidth = self.getDeviceSize().width
+
         deviceHeight = self.getDeviceSize().height
     }
     

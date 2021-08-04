@@ -20,6 +20,7 @@ class FaceModel {
     public var lookAtPoint: simd_float3 = simd_make_float3(0, 0, 0)
     public var estimationPointOnTheScreen: CGPoint = CGPoint()
     
+
     init(view: ARSCNView) {
         self.setUpEyes(view: view)
         deviceModel.setUpDeviceScreenNode(view: view)
@@ -38,23 +39,33 @@ class FaceModel {
         let leftEyeDistanceFromDevice = (leftEye.worldPosition - SCNVector3Zero).length()
         let rightEyeDistanceFromDevice = (rightEye.worldPosition - SCNVector3Zero).length()
         let avarageDistance = (leftEyeDistanceFromDevice + rightEyeDistanceFromDevice) / 2
+      
         return round(avarageDistance * 100)
     }
     
     private func setUpEyes(view:ARSCNView) {
         leftEye.opacity = 0
         rightEye.opacity = 0
+        
+        leftEye.eulerAngles.x = -.pi / 2
+        leftEye.position.z = 0.1
+        
+        rightEye.eulerAngles.x = -.pi / 2
+        rightEye.position.z = 0.1
+        
         leftEye.addChildNode(getEyePositionChildNode())
         rightEye.addChildNode(getEyePositionChildNode())
+      
         faceNode.addChildNode(leftEye)
         faceNode.addChildNode(rightEye)
+        
         view.scene.rootNode.addChildNode(faceNode)
     }
     
     private func getEyePositionChildNode() -> SCNNode {
         let eyePositionNode = SCNNode()
         eyePositionNode.opacity = 0
-        eyePositionNode.position.z = 1
+        eyePositionNode.position.z = 2
         return eyePositionNode
     }
     
@@ -72,7 +83,7 @@ class FaceModel {
         let eyesYCords =  (-((leftEye!.y + rightEye!.y) / 2))
         
         let x =  eyesXCords / (deviceModel.deviceWidth / 2.0) * deviceModel.screenWidth
-        let y = eyesYCords / (deviceModel.deviceHeight / 2.0) *  deviceModel.screenHeight + lengthFromCameraToTheCenterOfScreenY
+        let y = eyesYCords / (deviceModel.deviceHeight / 2.0) *  deviceModel.screenHeight + lengthFromCameraToTheCenterOfScreenY - 100
         let point = CGPoint(x: CGFloat(x), y: CGFloat(y))
         
         if(estimationPoints.count > (Int(distanceFromDevice() / 2))){
@@ -97,18 +108,6 @@ class FaceModel {
     }
     
     private func getEyeHittingResults(deviceScreenNode: SCNNode, eye: SCNNode) -> Array<SCNHitTestResult>{
-      
-        let options : [String: Any] = [SCNHitTestOption.backFaceCulling.rawValue: false,
-                                       SCNHitTestOption.searchMode.rawValue: 1,
-                                       SCNHitTestOption.ignoreLightArea.rawValue: true,
-                                       SCNHitTestOption.boundingBoxOnly.rawValue: true,
-                                       SCNHitTestOption.ignoreChildNodes.rawValue : false,
-                                       SCNHitTestOption.ignoreHiddenNodes.rawValue : false]
-        
-        let eyeDevicePosition = deviceScreenNode.convertPosition(eye.worldPosition, to: nil)
-        let eyeTargetDevicePosition = deviceScreenNode.convertPosition(eye.childNodes[0].worldPosition, to: nil)
-        let eyeHittingTestResult = deviceScreenNode.hitTestWithSegment(from: eyeDevicePosition, to: eyeTargetDevicePosition,options: options)
-        
-        return eyeHittingTestResult
+        return deviceScreenNode.hitTestWithSegment(from: eye.childNodes[0].worldPosition, to: eye.worldPosition, options: nil)
     }
 }

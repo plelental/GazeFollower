@@ -9,7 +9,7 @@ import Foundation
 import ARKit
 
 class CalibrationDataModel: Codable {
-    
+
     /// Unical Id of calibration step.
     /// Depth and captured photo can be correlated by uuid
     public var uuid: String
@@ -42,21 +42,21 @@ class CalibrationDataModel: Codable {
     public var depthDataType: String
     /// An elapsed time of the calibration step
     public var elapsedTime: Float
-    
+
     init(
-        uuid: String,
-        date: String,
-        testPointX: Float,
-        testPointY: Float,
-        estimationPointX: Float,
-        estimationPointY: Float,
-        distanceFromDevice: Float,
-        calibrationStep: Int,
-        depthDataQuality: Int,
-        depthDataAccuracy: Int,
-        isDepthDataFiltered: Bool,
-        depthDataType: String,
-        elapsedTime: Float) {
+            uuid: String,
+            date: String,
+            testPointX: Float,
+            testPointY: Float,
+            estimationPointX: Float,
+            estimationPointY: Float,
+            distanceFromDevice: Float,
+            calibrationStep: Int,
+            depthDataQuality: Int,
+            depthDataAccuracy: Int,
+            isDepthDataFiltered: Bool,
+            depthDataType: String,
+            elapsedTime: Float) {
         self.uuid = uuid
         self.date = date
         self.testPointX = testPointX
@@ -71,5 +71,5 @@ class CalibrationDataModel: Codable {
         self.depthDataType = depthDataType
         self.elapsedTime = elapsedTime
     }
-    
+
 }

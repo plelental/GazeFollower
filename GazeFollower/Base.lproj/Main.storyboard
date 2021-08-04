@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YBZ-7i-DtG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YBZ-7i-DtG">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -37,7 +37,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.50852914279999994" blue="0.81625570709999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <rect key="contentStretch" x="0.050000000000000003" y="0.0" width="1" height="1"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
-                                <state key="normal" title="Project gaze point on the screen">
+                                <state key="normal" title="Test gaze estimation in reading">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="light"/>
@@ -58,7 +58,7 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="light"/>
                                 </state>
                                 <connections>
-                                    <segue destination="w8A-4b-iXO" kind="show" id="lSv-Or-erW"/>
+                                    <segue destination="zLe-lZ-Azh" kind="show" id="abi-cz-Fw0"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="eye" translatesAutoresizingMaskIntoConstraints="NO" id="B4L-5s-SFH">
@@ -186,6 +186,38 @@
             </objects>
             <point key="canvasLocation" x="2690" y="542"/>
         </scene>
+        <!--Web Browser Controller-->
+        <scene sceneID="nNH-X7-KUD">
+            <objects>
+                <viewController id="zLe-lZ-Azh" customClass="WebBrowserController" customModule="GazeFollower" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Y1Z-9h-xLw">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qYX-qq-mc8" userLabel="AR View">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </arscnView>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xO3-Uo-8ut">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="YXG-k3-fHC"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ydK-mp-SYY"/>
+                    <connections>
+                        <outlet property="arView" destination="qYX-qq-mc8" id="E4F-lq-VJg"/>
+                        <outlet property="mainView" destination="Y1Z-9h-xLw" id="pAp-cS-8VP"/>
+                        <outlet property="webView" destination="xO3-Uo-8ut" id="7CO-r7-Sdi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DLI-yc-Xe6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="282.60869565217394" y="541.74107142857144"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="RCb-i2-0Zx">
             <objects>
@@ -204,18 +236,25 @@
             </objects>
             <point key="canvasLocation" x="1135" y="542"/>
         </scene>
-        <!--Gaze Point Controller-->
+        <!--Reading Controller-->
         <scene sceneID="BZD-Y2-LdL">
             <objects>
-                <viewController id="uyI-2J-lQQ" customClass="GazePointController" customModule="GazeFollower" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="uyI-2J-lQQ" customClass="ReadingController" customModule="GazeFollower" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5dd-E7-gBt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nie-uy-so1">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </arscnView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TextToRead" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lam-NW-WMD">
+                                <rect key="frame" x="20" y="88" width="374" height="786"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yZ6-iC-Aio"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -223,11 +262,13 @@
                     <navigationItem key="navigationItem" id="2Td-C7-Xft"/>
                     <connections>
                         <outlet property="GazeView" destination="Nie-uy-so1" id="LgR-Za-fI2"/>
+                        <outlet property="gazeView" destination="Nie-uy-so1" id="dmK-PK-waQ"/>
+                        <outlet property="textToRead" destination="Lam-NW-WMD" id="2rH-Qr-kXx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0fK-R0-yoF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3448" y="542"/>
+            <point key="canvasLocation" x="3447.826086956522" y="541.74107142857144"/>
         </scene>
         <!--Calibration Controller-->
         <scene sceneID="uk5-IQ-iHG">

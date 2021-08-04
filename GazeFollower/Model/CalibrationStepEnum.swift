@@ -9,15 +9,15 @@ import Foundation
 
 
 enum CalibrationStepEnum: Int, CaseIterable {
-    
+
     case OutOfTheScreen = 0
     case LeftUpperCorner = 1
     case LeftBottomCorner = 2
     case RightBottomCorner = 3
     case RightUpperCorner = 4
     case Center = 5
-    
+
     func getStep() -> Int {
-        return self.rawValue
+        self.rawValue
     }
 }
