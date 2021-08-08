@@ -10,11 +10,11 @@ import UIKit
 import SceneKit
 
 func +(first: CGPoint, second: CGPoint) -> CGPoint {
-    return CGPoint(x: first.x + second.x, y: first.y + second.y)
+    CGPoint(x: first.x + second.x, y: first.y + second.y)
 }
 
 func /(first: CGPoint, second: CGFloat) -> CGPoint {
-    return CGPoint(x: first.x / second, y: first.y / second)
+    CGPoint(x: first.x / second, y: first.y / second)
 }
 
 extension Collection where Element == CGPoint, Index == Int {
@@ -24,7 +24,7 @@ extension Collection where Element == CGPoint, Index == Int {
         }
 
         let sum: CGPoint = reduce(CGPoint(x: 0, y: 0)) { first, second -> CGPoint in
-            return first + second
+            first + second
         }
 
         return sum / CGFloat(count)

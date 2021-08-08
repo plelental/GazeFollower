@@ -15,7 +15,7 @@ class ReadingController: BaseController, ARSCNViewDelegate, ARSessionDelegate {
 
     @IBOutlet weak var gazeView: ARSCNView!
     @IBOutlet weak var textToRead: UILabel!
-    
+
     private let scnVectorHelper = SCNVectorHelper()
     private var faceModel: FaceModel!
     private var gazePoint: UIView = UIView()
@@ -24,13 +24,29 @@ class ReadingController: BaseController, ARSCNViewDelegate, ARSessionDelegate {
         super.viewDidLoad()
         setUpARSCNView(view: gazeView, viewDelegate: self, arSessionDelegate: self)
         faceModel = FaceModel(view: gazeView)
-        textToRead.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        textToRead.text = """
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat 
+                          nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                          deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                          nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor 
+                          in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+                          occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                          et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut 
+                          aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+                          esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                          sunt in culpa qui officia deserunt mollit anim id est laborum.
+                          """
     }
 
     override func viewDidAppear(_ animated: Bool) {
         setUpNavigationBarAfterAppear(hidden: false, animated: animated)
         renderScreenPoint()
-    
+
     }
 
     override func viewWillAppear(_ animated: Bool) {

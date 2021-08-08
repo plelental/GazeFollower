@@ -43,7 +43,7 @@ class ScreenPointModel {
         self.x = x
         self.y = y
         self.backgroundColor = backgroundColor
-        self.withShadowing = shadowOpacity != nil
+        withShadowing = shadowOpacity != nil
                 && shadowPath != nil
                 && shadowOffset != nil
                 && shadowRadius != nil
