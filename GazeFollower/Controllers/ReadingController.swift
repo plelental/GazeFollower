@@ -24,29 +24,15 @@ class ReadingController: BaseController, ARSCNViewDelegate, ARSessionDelegate {
         super.viewDidLoad()
         setUpARSCNView(view: gazeView, viewDelegate: self, arSessionDelegate: self)
         faceModel = FaceModel(view: gazeView)
-        textToRead.text = """
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat 
-                          nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                          deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                          nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor 
-                          in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
-                          occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                          et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut 
-                          aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-                          esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                          sunt in culpa qui officia deserunt mollit anim id est laborum.
-                          """
+        textToRead.text = ReadingConstants.readingText
+        DoubleTabListener()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         setUpNavigationBarAfterAppear(hidden: false, animated: animated)
-        renderScreenPoint()
+        ShowAlert(title: "Recording session", message: "The reading session after clicking \"Ok\" button will be recorded. To stop recording tap twice on the screen")
 
+        renderScreenPoint(width: 30, height: 30, subViewToRender: gazePoint, arView: gazeView)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -58,6 +44,13 @@ class ReadingController: BaseController, ARSCNViewDelegate, ARSessionDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         super.hideNavigationBar()
         gazeView.session.pause()
+    }
+
+    @objc func doubleTapped() {
+        UIApplication.shared.getScreenshot()
+        ShowAlert(title: "Saving recording session",
+                message: "The recording session has stopped and has been saved",
+                handler: { _ in _ = self.navigationController?.popToRootViewController(animated: true) })
     }
 
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for faceAnchor: ARAnchor) {
@@ -74,21 +67,6 @@ class ReadingController: BaseController, ARSCNViewDelegate, ARSessionDelegate {
 
     }
 
-    private func renderScreenPoint() {
-        let screenPoint = ScreenPointModel(cornerRadius: 20,
-                shadowOpacity: 1,
-                shadowOffset: .zero,
-                shadowRadius: 20,
-                shadowPath: UIBezierPath(rect: gazePoint.bounds).cgPath,
-                width: 20,
-                height: 20,
-                x: 0,
-                y: 0,
-                backgroundColor: ColorHelper.UIColorFromRGB(0x1273DE))
-
-        setUpAndRenderPointOnTheScreen(uiView: gazePoint, arView: gazeView, screenPoint: screenPoint)
-    }
-
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
 
@@ -102,5 +80,17 @@ class ReadingController: BaseController, ARSCNViewDelegate, ARSessionDelegate {
     func sessionInterruptionEnded(_ session: ARSession) {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
 
+    }
+
+    private func DoubleTabListener() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
+        tap.numberOfTapsRequired = 2
+        view.addGestureRecognizer(tap)
+    }
+
+    private func ShowAlert(title: String, message: String, handler: ((UIAlertAction) -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: handler))
+        present(alert, animated: true)
     }
 }

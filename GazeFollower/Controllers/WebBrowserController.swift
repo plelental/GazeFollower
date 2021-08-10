@@ -36,7 +36,8 @@ class WebBrowserController: BaseController, ARSCNViewDelegate, ARSessionDelegate
 
     override func viewDidAppear(_ animated: Bool) {
         setUpNavigationBarAfterAppear(hidden: false, animated: animated)
-        renderScreenPoint()
+        renderScreenPoint(width: 30, height: 30, subViewToRender: gazePoint, arView: arView)
+        mainView.insertSubview(gazePoint, at: 2)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -63,43 +64,13 @@ class WebBrowserController: BaseController, ARSCNViewDelegate, ARSessionDelegate
         }
 
         DispatchQueue.main.async(execute: { () -> Void in
-            let point =  self.faceModel.estimationPointOnTheScreen
+            let point = self.faceModel.estimationPointOnTheScreen
             self.gazePoint.center = point
             if mouthPucker.floatValue > 0.5 {
                 self.webView.stringByEvaluatingJavaScript(from: "document.elementFromPoint(\(point.x),\(point.y - 50)).click()")
             }
         })
 
-    }
-
-    private func renderScreenPoint() {
-        let screenPoint = ScreenPointModel(cornerRadius: 20,
-                shadowOpacity: 1,
-                shadowOffset: .zero,
-                shadowRadius: 20,
-                shadowPath: UIBezierPath(rect: gazePoint.bounds).cgPath,
-                width: 20,
-                height: 20,
-                x: 0,
-                y: 0,
-                backgroundColor: ColorHelper.UIColorFromRGB(0x1273DE))
-
-        gazePoint.frame = CGRect.init(
-                x: screenPoint.x,
-                y: screenPoint.y,
-                width: screenPoint.width,
-                height: screenPoint.height)
-
-        gazePoint.backgroundColor = screenPoint.backgroundColor
-        gazePoint.layer.cornerRadius = screenPoint.cornerRadius ?? 0
-
-        if (screenPoint.withShadowing) {
-            gazePoint.layer.shadowOpacity = screenPoint.shadowOpacity ?? 0.0
-            gazePoint.layer.shadowOffset = screenPoint.shadowOffset ?? CGSize()
-            gazePoint.layer.shadowRadius = screenPoint.shadowRadius ?? 3.0
-            gazePoint.layer.shadowPath = screenPoint.shadowPath
-        }
-        mainView.insertSubview(gazePoint, at: 2)
     }
 
     func session(_ session: ARSession, didFailWithError error: Error) {
