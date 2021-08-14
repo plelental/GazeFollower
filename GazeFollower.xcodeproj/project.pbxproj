@@ -38,8 +38,11 @@
 		1DFC707725FE2E690095D45A /* CalibrationStepEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFC707625FE2E690095D45A /* CalibrationStepEnum.swift */; };
 		1DFC707C25FE31010095D45A /* CalibrationDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFC707B25FE31010095D45A /* CalibrationDataModel.swift */; };
 		1DFC708125FE362E0095D45A /* ScreenPointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFC708025FE362E0095D45A /* ScreenPointModel.swift */; };
+		BE0D417BA4CAF1493D8A832D /* RenderPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D465CCE1A966BFFE3F923 /* RenderPoint.swift */; };
+		BE0D4342FFB7E0F7614A633D /* HeatPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D4B6A27ACC23A2551D497 /* HeatPoint.swift */; };
 		BE0D4A2AF64949971D24DFF5 /* ReadingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D4A9DD070D5FA5C23AFA5 /* ReadingConstants.swift */; };
 		BE0D4B71415513AF5FE50773 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D44FE8B1EC3BA11B8FEF4 /* UIApplicationExtension.swift */; };
+		BE0D4FE93614EE4076C33118 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D442EE957E21B8B5CB230 /* UIColorExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,8 +100,11 @@
 		1DFC707625FE2E690095D45A /* CalibrationStepEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationStepEnum.swift; sourceTree = "<group>"; };
 		1DFC707B25FE31010095D45A /* CalibrationDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationDataModel.swift; sourceTree = "<group>"; };
 		1DFC708025FE362E0095D45A /* ScreenPointModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenPointModel.swift; sourceTree = "<group>"; };
+		BE0D442EE957E21B8B5CB230 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		BE0D44FE8B1EC3BA11B8FEF4 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
+		BE0D465CCE1A966BFFE3F923 /* RenderPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderPoint.swift; sourceTree = "<group>"; };
 		BE0D4A9DD070D5FA5C23AFA5 /* ReadingConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadingConstants.swift; sourceTree = "<group>"; };
+		BE0D4B6A27ACC23A2551D497 /* HeatPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeatPoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +164,8 @@
 				1DFC707B25FE31010095D45A /* CalibrationDataModel.swift */,
 				1DFC708025FE362E0095D45A /* ScreenPointModel.swift */,
 				1D4A2AC326064DD0008BC231 /* Constants.swift */,
+				BE0D465CCE1A966BFFE3F923 /* RenderPoint.swift */,
+				BE0D4B6A27ACC23A2551D497 /* HeatPoint.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -247,6 +255,7 @@
 				1DB9F5C425FCE83200B7678E /* CGPointExtension.swift */,
 				1D4A2AC826066670008BC231 /* SCNVector3Extension.swift */,
 				BE0D44FE8B1EC3BA11B8FEF4 /* UIApplicationExtension.swift */,
+				BE0D442EE957E21B8B5CB230 /* UIColorExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -417,6 +426,9 @@
 				1D00439B25FCB996000C89AD /* DeviceModel.swift in Sources */,
 				BE0D4B71415513AF5FE50773 /* UIApplicationExtension.swift in Sources */,
 				BE0D4A2AF64949971D24DFF5 /* ReadingConstants.swift in Sources */,
+				BE0D417BA4CAF1493D8A832D /* RenderPoint.swift in Sources */,
+				BE0D4342FFB7E0F7614A633D /* HeatPoint.swift in Sources */,
+				BE0D4FE93614EE4076C33118 /* UIColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,65 +10,6 @@ import UIKit
 import SceneKit
 import ARKit
 
-class RenderPoint: Codable {
-    public var key: String
-    public var point: CGPoint
-
-    init(key: String, point: CGPoint) {
-        self.key = key
-        self.point = point
-    }
-
-}
-
-class HeatPoint: Codable {
-    public var point: CGPoint
-    public var occurrence: Int
-
-    init(point: CGPoint, occurrence: Int) {
-        self.point = point
-        self.occurrence = occurrence
-    }
-
-}
-extension UIColor {
-    func toHexString() -> String {
-        var r:CGFloat = 0
-        var g:CGFloat = 0
-        var b:CGFloat = 0
-        var a:CGFloat = 0
-
-        getRed(&r, green: &g, blue: &b, alpha: &a)
-
-        let rgb:Int = (Int)(r*255)<<16 | (Int)(g*255)<<8 | (Int)(b*255)<<0
-
-        return String(format:"#%06x", rgb)
-    }
-}
-
-extension UIColor {
-
-    func lighter(by percentage: CGFloat = 30.0) -> UIColor? {
-        return self.adjust(by: abs(percentage))
-    }
-
-    func darker(by percentage: CGFloat = 30.0) -> UIColor? {
-        return self.adjust(by: -1 * abs(percentage))
-    }
-
-    func adjust(by percentage: CGFloat = 30.0) -> UIColor? {
-        var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
-        if self.getRed(&red, green: &green, blue: &blue, alpha: &alpha) {
-            return UIColor(red: min(red + percentage / 100, 1.0),
-                    green: min(green + percentage / 100, 1.0),
-                    blue: min(blue + percentage / 100, 1.0),
-                    alpha: alpha)
-        } else {
-            return nil
-        }
-    }
-}
-
 class ReadingController: BaseController, ARSCNViewDelegate, ARSessionDelegate {
 
     @IBOutlet weak var gazeView: ARSCNView!
@@ -110,9 +51,18 @@ class ReadingController: BaseController, ARSCNViewDelegate, ARSessionDelegate {
 
     @objc func doubleTapped() {
         isRecordingSession = false
+        GenerateHeatMap()
+        UIApplication.shared.getScreenshot()
+        ShowAlert(title: "Saving recording session",
+                message: "The recording session has stopped and has been saved",
+                handler: { _ in _ = self.navigationController?.popToRootViewController(animated: true) })
+    }
+
+    private func GenerateHeatMap() {
         let dictionary = Dictionary(grouping: gazePointsList, by: { element in element.key })
 
         var heatMaps: [HeatPoint] = []
+
         for (_, value) in dictionary {
             heatMaps.append(HeatPoint(point: value.first!.point, occurrence: value.count))
         }
@@ -135,22 +85,19 @@ class ReadingController: BaseController, ARSCNViewDelegate, ARSessionDelegate {
             $0.occurrence
         })
         let distinctCount = occurrencesSet.count
-
         let incrementer = (100 / distinctCount)
 
-        var color = ColorHelper.UIColorFromRGB(0xfe11f)
 
         for (index, element) in highestHeatValues.enumerated() {
             let view = UIView()
             if (index == 0) {
                 renderScreenPointWithColor(width: 30, height: 30, subViewToRender: view, arView: gazeView, color: ColorHelper.UIColorFromRGB(0xfe11f))
             } else {
-                if (highestHeatValues[index - 1].occurrence < element.occurrence) {
-                    color = color.darker(by: CGFloat(incrementer))!
-                }
-                let heatedColor = color.darker(by: CGFloat(element.occurrence * incrementer))
-                if(heatedColor?.toHexString() == "#000000"){
-                    color = ColorHelper.UIColorFromRGB(0xe30000)
+                var heatedColor = ColorHelper
+                        .UIColorFromRGB(0xfe11f)
+                        .darker(by: CGFloat(element.occurrence * incrementer))
+                if (heatedColor?.toHexString() == "#000000") {
+                    heatedColor = ColorHelper.UIColorFromRGB(0xe30000)
                 }
                 renderScreenPointWithColor(width: 30, height: 30, subViewToRender: view, arView: gazeView, color: heatedColor!)
 
@@ -158,12 +105,6 @@ class ReadingController: BaseController, ARSCNViewDelegate, ARSessionDelegate {
             view.center = element.point
 
         }
-
-
-        UIApplication.shared.getScreenshot()
-        ShowAlert(title: "Saving recording session",
-                message: "The recording session has stopped and has been saved",
-                handler: { _ in _ = self.navigationController?.popToRootViewController(animated: true) })
     }
 
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for faceAnchor: ARAnchor) {
@@ -178,11 +119,7 @@ class ReadingController: BaseController, ARSCNViewDelegate, ARSessionDelegate {
             let point = self.faceModel.estimationPointOnTheScreen
             self.gazePointView.center = point
             if (self.isRecordingSession) {
-                let x = String(format: "%.f", point.x)
-                let y = String(format: "%.f", point.y)
-                let key = "\(x)\(y)"
-                let renderPoint = RenderPoint(key: key, point: point)
-                self.gazePointsList.append(renderPoint)
+                self.gazePointsList.append(self.CreateRenderPoint(point: point))
             }
         })
 
@@ -213,5 +150,13 @@ class ReadingController: BaseController, ARSCNViewDelegate, ARSessionDelegate {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: handler))
         present(alert, animated: true)
+    }
+
+    private func CreateRenderPoint(point: CGPoint) -> RenderPoint {
+        let x = String(format: "%.f", point.x)
+        let y = String(format: "%.f", point.y)
+        let key = "\(x)\(y)"
+        let renderPoint = RenderPoint(key: key, point: point)
+        return renderPoint
     }
 }
