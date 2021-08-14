@@ -26,6 +26,36 @@ class BaseController: UIViewController {
         setUpAndRenderPointOnTheScreen(uiView: subViewToRender, arView: arView, screenPoint: screenPoint)
     }
 
+    func renderScreenPointWithColor(width: Int, height: Int, subViewToRender: UIView, arView: ARSCNView, color: UIColor) {
+        let screenPoint = ScreenPointModel(cornerRadius: 20,
+                shadowOpacity: 1,
+                shadowOffset: .zero,
+                shadowRadius: 20,
+                shadowPath: UIBezierPath(rect: subViewToRender.bounds).cgPath,
+                width: width,
+                height: height,
+                x: 0,
+                y: 0,
+                backgroundColor: color)
+
+        setUpAndRenderPointOnTheScreen(uiView: subViewToRender, arView: arView, screenPoint: screenPoint)
+    }
+
+    func renderScreenPointWithColor(width: Int, height: Int, subViewToRender: UIView, arView: ARSCNView, rgbColor: Int) {
+        let screenPoint = ScreenPointModel(cornerRadius: 20,
+                shadowOpacity: 1,
+                shadowOffset: .zero,
+                shadowRadius: 20,
+                shadowPath: UIBezierPath(rect: subViewToRender.bounds).cgPath,
+                width: width,
+                height: height,
+                x: 0,
+                y: 0,
+                backgroundColor: ColorHelper.UIColorFromRGB(rgbColor))
+
+        setUpAndRenderPointOnTheScreen(uiView: subViewToRender, arView: arView, screenPoint: screenPoint)
+    }
+
     func setUpAndRenderPointOnTheScreen(uiView: UIView, arView: ARSCNView, screenPoint: ScreenPointModel) {
 
         uiView.frame = CGRect.init(
@@ -41,7 +71,7 @@ class BaseController: UIViewController {
             uiView.layer.shadowOpacity = screenPoint.shadowOpacity ?? 0.0
             uiView.layer.shadowOffset = screenPoint.shadowOffset ?? CGSize()
             uiView.layer.shadowRadius = screenPoint.shadowRadius ?? 3.0
-        uiView.layer.shadowPath = screenPoint.shadowPath
+            uiView.layer.shadowPath = screenPoint.shadowPath
         }
 
         arView.addSubview(uiView)
@@ -51,7 +81,7 @@ class BaseController: UIViewController {
         let configuration = ARFaceTrackingConfiguration()
         configuration.isLightEstimationEnabled = true
         configuration.maximumNumberOfTrackedFaces = 1
-        view.session.run(configuration,options: [.resetTracking, .removeExistingAnchors])
+        view.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
     }
 
     func setUpARSCNView(view: ARSCNView, viewDelegate: ARSCNViewDelegate, arSessionDelegate: ARSessionDelegate) {

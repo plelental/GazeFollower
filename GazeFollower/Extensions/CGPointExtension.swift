@@ -9,24 +9,31 @@ import Foundation
 import UIKit
 import SceneKit
 
-func +(first: CGPoint, second: CGPoint) -> CGPoint {
-    CGPoint(x: first.x + second.x, y: first.y + second.y)
+
+extension CGPoint {
+    static func +(lhs: CGPoint, rhs: CGPoint) -> CGPoint {
+        CGPoint(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
+    }
+
+    static func -(lhs: CGPoint, rhs: CGPoint) -> CGPoint {
+        CGPoint(x: lhs.x - rhs.x, y: lhs.y - rhs.y)
+    }
+
+    static func /(lhs: CGPoint, rhs: CGFloat) -> CGPoint {
+        CGPoint(x: lhs.x / rhs, y: lhs.y / rhs)
+    }
+
+    static func *(lhs: CGPoint, rhs: CGFloat) -> CGPoint {
+        CGPoint(x: lhs.x * rhs, y: lhs.y * rhs)
+    }
 }
 
-func /(first: CGPoint, second: CGFloat) -> CGPoint {
-    CGPoint(x: first.x / second, y: first.y / second)
-}
-
-extension Collection where Element == CGPoint, Index == Int {
-    var average: CGPoint? {
-        guard !isEmpty else {
-            return CGPoint()
+extension Array where Element == CGPoint {
+    func mean() -> CGPoint? {
+        if isEmpty {
+            return nil
         }
 
-        let sum: CGPoint = reduce(CGPoint(x: 0, y: 0)) { first, second -> CGPoint in
-            first + second
-        }
-
-        return sum / CGFloat(count)
+        return reduce(.zero, +) / CGFloat(count)
     }
 }
