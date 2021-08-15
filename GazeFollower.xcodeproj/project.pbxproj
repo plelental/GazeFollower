@@ -40,6 +40,7 @@
 		BE0D417BA4CAF1493D8A832D /* RenderPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D465CCE1A966BFFE3F923 /* RenderPoint.swift */; };
 		BE0D431900D03B2AEB28BB72 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D4CED0AC261718FA797AB /* Constants.swift */; };
 		BE0D4342FFB7E0F7614A633D /* HeatPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D4B6A27ACC23A2551D497 /* HeatPoint.swift */; };
+		BE0D496A482E6523527BE2FE /* notebook.ipynb in Resources */ = {isa = PBXBuildFile; fileRef = BE0D45A6C6A8B6222889F794 /* notebook.ipynb */; };
 		BE0D4A2AF64949971D24DFF5 /* ReadingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D4A9DD070D5FA5C23AFA5 /* ReadingConstants.swift */; };
 		BE0D4B71415513AF5FE50773 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D44FE8B1EC3BA11B8FEF4 /* UIApplicationExtension.swift */; };
 		BE0D4E1F72C02BBEDF34B15B /* Coords.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D4A09937FBF971F01A617 /* Coords.swift */; };
@@ -102,6 +103,7 @@
 		1DFC708025FE362E0095D45A /* ScreenPointModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenPointModel.swift; sourceTree = "<group>"; };
 		BE0D442EE957E21B8B5CB230 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		BE0D44FE8B1EC3BA11B8FEF4 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
+		BE0D45A6C6A8B6222889F794 /* notebook.ipynb */ = {isa = PBXFileReference; lastKnownFileType = file.ipynb; path = notebook.ipynb; sourceTree = "<group>"; };
 		BE0D465CCE1A966BFFE3F923 /* RenderPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderPoint.swift; sourceTree = "<group>"; };
 		BE0D4A09937FBF971F01A617 /* Coords.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coords.swift; sourceTree = "<group>"; };
 		BE0D4A9DD070D5FA5C23AFA5 /* ReadingConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadingConstants.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 			children = (
 				1D03380325C5A03500751559 /* coordinateOrigin.scn */,
 				1D134A5925C4B76000408C11 /* Assets.xcassets */,
+				BE0D45A6C6A8B6222889F794 /* notebook.ipynb */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 				1D134A5A25C4B76000408C11 /* Assets.xcassets in Resources */,
 				1D03380425C5A03500751559 /* coordinateOrigin.scn in Resources */,
 				1D134A5825C4B75E00408C11 /* Main.storyboard in Resources */,
+				BE0D496A482E6523527BE2FE /* notebook.ipynb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
