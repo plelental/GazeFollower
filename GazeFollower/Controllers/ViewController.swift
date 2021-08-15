@@ -1,5 +1,5 @@
-//
 //  ViewController.swift
+//
 //  GazeFollower
 //
 //  Created by Paweł Lelental on 29/01/2021.
@@ -10,33 +10,11 @@ import RealityKit
 
 class ViewController: BaseController {
 
-    @IBOutlet var arView: ARView!
     @IBOutlet var mainView: UIView!
-    @IBOutlet weak var gazeEstimator: UIButton!
-    @IBOutlet weak var calibrate: UIButton!
+    @IBOutlet var recordReadingButton: UIButton!
+    @IBOutlet var webBrowserButton: UIButton!
     @IBOutlet weak var eyeImage: UIImageView!
     @IBOutlet weak var cameraButton: UIButton!
-    @IBOutlet weak var saveDataButton: UIButton!
-
-    private let fileService = FileService()
-
-    @IBAction func onClick(_ sender: UIButton, forEvent event: UIEvent) {
-        guard let url = fileService.getFileUrl(fileName: Constants.calibrationDataFileName) else {
-            return
-        }
-        do {
-            let data = try String(contentsOf: url)
-            let activityViewController = UIActivityViewController(activityItems: [data], applicationActivities: nil)
-            present(activityViewController, animated: true, completion: nil)
-        } catch {
-            let alert = UIAlertController(title: "No calibration data available", message: "To save the data, please first process the test step", preferredStyle: .alert)
-
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-
-            present(alert, animated: true)
-        }
-    }
-
 
     override func viewDidAppear(_ animated: Bool) {
         super.setUpNavigationBarAfterAppear(hidden: true, animated: animated)
@@ -59,14 +37,11 @@ class ViewController: BaseController {
         cameraButton.applyGradient(colors: buttonColor())
         cameraButton.applyShadow()
 
-        gazeEstimator.applyGradient(colors: buttonColor())
-        gazeEstimator.applyShadow()
+        recordReadingButton.applyGradient(colors: buttonColor())
+        recordReadingButton.applyShadow()
 
-        calibrate.applyGradient(colors: buttonColor())
-        calibrate.applyShadow()
-
-        saveDataButton.applyGradient(colors: buttonColor())
-        saveDataButton.applyShadow()
+        webBrowserButton.applyGradient(colors: buttonColor())
+        webBrowserButton.applyShadow()
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {

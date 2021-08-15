@@ -20,7 +20,7 @@ class ReadingController: BaseController, ARSCNViewDelegate, ARSessionDelegate, M
     private let fileService = FileService()
     private var faceModel: FaceModel!
     private var gazePointView: UIView = UIView()
-    private var gazePointsList: [RenderPoint] = []
+    private var gazePointsList: [Coords] = []
     private var isRecordingSession = false
     private var screenShot: UIImage = UIImage()
 
@@ -28,7 +28,7 @@ class ReadingController: BaseController, ARSCNViewDelegate, ARSessionDelegate, M
         super.viewDidLoad()
         setUpARSCNView(view: gazeView, viewDelegate: self, arSessionDelegate: self)
         faceModel = FaceModel(view: gazeView)
-        textToRead.text = ReadingConstants.readingText
+        textToRead.text = ReadingTextConstants.readingText
         DoubleTabListener()
     }
 
@@ -54,7 +54,7 @@ class ReadingController: BaseController, ARSCNViewDelegate, ARSessionDelegate, M
 
     @objc func doubleTapped() {
         isRecordingSession = false
-        GenerateHeatMap()
+        GenerateTrackingRoute()
         screenShot = UIApplication.shared.getScreenshot()!
         try! DataToJson()
         ShowAlert(title: "The recording session has ended",
@@ -69,12 +69,10 @@ class ReadingController: BaseController, ARSCNViewDelegate, ARSessionDelegate, M
             return
         }
         let jsonEncoder = JSONEncoder()
-        let coords = gazePointsList.map { (renderPoint: RenderPoint) -> Coords in
-            Coords(x: Int(renderPoint.point.x), y: Int(renderPoint.point.y))
-        }
+
         jsonEncoder.outputFormatting = .prettyPrinted
 
-        let jsonData = try jsonEncoder.encode(coords)
+        let jsonData = try jsonEncoder.encode(gazePointsList)
         try? jsonData.write(to: readingFile, options: .atomicWrite)
     }
 
@@ -120,50 +118,11 @@ class ReadingController: BaseController, ARSCNViewDelegate, ARSessionDelegate, M
         controller.dismiss(animated: true, completion: nil)
     }
 
-    private func GenerateHeatMap() {
-        let dictionary = Dictionary(grouping: gazePointsList, by: { element in element.key })
-
-        var heatMaps: [HeatPoint] = []
-
-        for (_, value) in dictionary {
-            heatMaps.append(HeatPoint(point: value.first!.point, occurrence: value.count))
-        }
-
-        let lowestHeatValues = heatMaps.filter {
-            $0.occurrence == 1
-        }
-        var highestHeatValues = heatMaps.filter {
-            $0.occurrence > 1
-        }
-
-        for lowestHeat in lowestHeatValues {
+    private func GenerateTrackingRoute() {
+        for element in gazePointsList {
             let view = UIView()
-            renderScreenPointWithColor(width: 30, height: 30, subViewToRender: view, arView: gazeView, rgbColor: 0x00ede9)
-            view.center = lowestHeat.point
-        }
-
-        highestHeatValues.sort(by: { $0.occurrence > $1.occurrence })
-        let occurrencesSet = NSSet(array: highestHeatValues.map {
-            $0.occurrence
-        })
-        var distinctCount = occurrencesSet.count
-
-        if (distinctCount == 0) {
-            distinctCount = 1
-        }
-        let incrementer = (100 / distinctCount)
-
-
-        for (index, element) in highestHeatValues.enumerated() {
-            let view = UIView()
-            if (index == 0) {
-                renderScreenPointWithColor(width: 30, height: 30, subViewToRender: view, arView: gazeView, color: ColorHelper.UIColorFromRGB(0xfe11f))
-            } else {
-                let heatedColor = UIColor.yellow.toColor(UIColor.red, percentage: CGFloat(element.occurrence * incrementer))
-                renderScreenPointWithColor(width: 30, height: 30, subViewToRender: view, arView: gazeView, color: heatedColor)
-            }
-            view.center = element.point
-
+            renderScreenPointWithColor(width: 30, height: 30, subViewToRender: view, arView: gazeView, color: ColorHelper.UIColorFromRGB(0xfe11f))
+            view.center = CGPoint(x: element.x, y: element.y)
         }
     }
 
@@ -179,7 +138,7 @@ class ReadingController: BaseController, ARSCNViewDelegate, ARSessionDelegate, M
             let point = self.faceModel.estimationPointOnTheScreen
             self.gazePointView.center = point
             if (self.isRecordingSession) {
-                self.gazePointsList.append(self.CreateRenderPoint(point: point))
+                self.gazePointsList.append(self.GenerateCoords(point: point))
             }
         })
 
@@ -212,11 +171,7 @@ class ReadingController: BaseController, ARSCNViewDelegate, ARSessionDelegate, M
         present(alert, animated: true)
     }
 
-    private func CreateRenderPoint(point: CGPoint) -> RenderPoint {
-        let x = String(format: "%.f", point.x)
-        let y = String(format: "%.f", point.y)
-        let key = "\(x)\(y)"
-        let renderPoint = RenderPoint(key: key, point: point)
-        return renderPoint
+    private func GenerateCoords(point: CGPoint) -> Coords {
+        Coords(x: Int(point.x), y: Int(point.y))
     }
 }

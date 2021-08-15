@@ -14,7 +14,6 @@
 		1D12364D25F37E65001F8795 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D12364C25F37E65001F8795 /* BaseController.swift */; };
 		1D12365225F380C0001F8795 /* UINavigationControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D12365125F380C0001F8795 /* UINavigationControllerExtension.swift */; };
 		1D12365825F38182001F8795 /* ColorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D12365725F38182001F8795 /* ColorHelper.swift */; };
-		1D12365D25F38859001F8795 /* CalibrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D12365C25F38859001F8795 /* CalibrationController.swift */; };
 		1D12366D25F39FFA001F8795 /* UIDeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D12366C25F39FFA001F8795 /* UIDeviceExtension.swift */; };
 		1D12367825F3BFF7001F8795 /* FileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D12367725F3BFF7001F8795 /* FileService.swift */; };
 		1D134A5125C4B75E00408C11 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D134A5025C4B75E00408C11 /* AppDelegate.swift */; };
@@ -32,16 +31,10 @@
 		1DD0F3C726BB0C2C00E20D85 /* WebBrowserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0F3C626BB0C2C00E20D85 /* WebBrowserController.swift */; };
 		1DF1BC9E25C4C82000C7175C /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF1BC9D25C4C82000C7175C /* UIButtonExtension.swift */; };
 		1DF1BCA325C4C86300C7175C /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF1BCA225C4C86300C7175C /* UIImageViewExtension.swift */; };
-		1DFC706D25FE1D8D0095D45A /* CalibrationPointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFC706C25FE1D8D0095D45A /* CalibrationPointModel.swift */; };
-		1DFC707225FE1F8D0095D45A /* CalibrationDataPointService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFC707125FE1F8D0095D45A /* CalibrationDataPointService.swift */; };
-		1DFC707725FE2E690095D45A /* CalibrationStepEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFC707625FE2E690095D45A /* CalibrationStepEnum.swift */; };
-		1DFC707C25FE31010095D45A /* CalibrationDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFC707B25FE31010095D45A /* CalibrationDataModel.swift */; };
 		1DFC708125FE362E0095D45A /* ScreenPointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFC708025FE362E0095D45A /* ScreenPointModel.swift */; };
-		BE0D417BA4CAF1493D8A832D /* RenderPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D465CCE1A966BFFE3F923 /* RenderPoint.swift */; };
 		BE0D431900D03B2AEB28BB72 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D4CED0AC261718FA797AB /* Constants.swift */; };
-		BE0D4342FFB7E0F7614A633D /* HeatPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D4B6A27ACC23A2551D497 /* HeatPoint.swift */; };
 		BE0D496A482E6523527BE2FE /* notebook.ipynb in Resources */ = {isa = PBXBuildFile; fileRef = BE0D45A6C6A8B6222889F794 /* notebook.ipynb */; };
-		BE0D4A2AF64949971D24DFF5 /* ReadingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D4A9DD070D5FA5C23AFA5 /* ReadingConstants.swift */; };
+		BE0D4A2AF64949971D24DFF5 /* ReadingTextConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D4A9DD070D5FA5C23AFA5 /* ReadingTextConstants.swift */; };
 		BE0D4B71415513AF5FE50773 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D44FE8B1EC3BA11B8FEF4 /* UIApplicationExtension.swift */; };
 		BE0D4E1F72C02BBEDF34B15B /* Coords.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D4A09937FBF971F01A617 /* Coords.swift */; };
 		BE0D4FE93614EE4076C33118 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D442EE957E21B8B5CB230 /* UIColorExtension.swift */; };
@@ -72,7 +65,6 @@
 		1D12364C25F37E65001F8795 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		1D12365125F380C0001F8795 /* UINavigationControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerExtension.swift; sourceTree = "<group>"; };
 		1D12365725F38182001F8795 /* ColorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHelper.swift; sourceTree = "<group>"; };
-		1D12365C25F38859001F8795 /* CalibrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationController.swift; sourceTree = "<group>"; };
 		1D12366C25F39FFA001F8795 /* UIDeviceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceExtension.swift; sourceTree = "<group>"; };
 		1D12367725F3BFF7001F8795 /* FileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileService.swift; sourceTree = "<group>"; };
 		1D134A4D25C4B75E00408C11 /* GazeFollower.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GazeFollower.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,18 +88,12 @@
 		1DD0F3C626BB0C2C00E20D85 /* WebBrowserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebBrowserController.swift; sourceTree = "<group>"; };
 		1DF1BC9D25C4C82000C7175C /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		1DF1BCA225C4C86300C7175C /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
-		1DFC706C25FE1D8D0095D45A /* CalibrationPointModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationPointModel.swift; sourceTree = "<group>"; };
-		1DFC707125FE1F8D0095D45A /* CalibrationDataPointService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationDataPointService.swift; sourceTree = "<group>"; };
-		1DFC707625FE2E690095D45A /* CalibrationStepEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationStepEnum.swift; sourceTree = "<group>"; };
-		1DFC707B25FE31010095D45A /* CalibrationDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationDataModel.swift; sourceTree = "<group>"; };
 		1DFC708025FE362E0095D45A /* ScreenPointModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenPointModel.swift; sourceTree = "<group>"; };
 		BE0D442EE957E21B8B5CB230 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		BE0D44FE8B1EC3BA11B8FEF4 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
 		BE0D45A6C6A8B6222889F794 /* notebook.ipynb */ = {isa = PBXFileReference; lastKnownFileType = file.ipynb; path = notebook.ipynb; sourceTree = "<group>"; };
-		BE0D465CCE1A966BFFE3F923 /* RenderPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderPoint.swift; sourceTree = "<group>"; };
 		BE0D4A09937FBF971F01A617 /* Coords.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coords.swift; sourceTree = "<group>"; };
-		BE0D4A9DD070D5FA5C23AFA5 /* ReadingConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadingConstants.swift; sourceTree = "<group>"; };
-		BE0D4B6A27ACC23A2551D497 /* HeatPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeatPoint.swift; sourceTree = "<group>"; };
+		BE0D4A9DD070D5FA5C23AFA5 /* ReadingTextConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadingTextConstants.swift; sourceTree = "<group>"; };
 		BE0D4CED0AC261718FA797AB /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -139,7 +125,6 @@
 		1D00438F25FCA0E3000C89AD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				1D12365C25F38859001F8795 /* CalibrationController.swift */,
 				1D12364C25F37E65001F8795 /* BaseController.swift */,
 				1D134A5225C4B75E00408C11 /* ViewController.swift */,
 				1D8F403A25C57A6B009F4146 /* CameraViewController.swift */,
@@ -153,7 +138,6 @@
 			isa = PBXGroup;
 			children = (
 				1D12367725F3BFF7001F8795 /* FileService.swift */,
-				1DFC707125FE1F8D0095D45A /* CalibrationDataPointService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -163,12 +147,7 @@
 			children = (
 				1D00439225FCA134000C89AD /* FaceModel.swift */,
 				1D00439A25FCB996000C89AD /* DeviceModel.swift */,
-				1DFC706C25FE1D8D0095D45A /* CalibrationPointModel.swift */,
-				1DFC707625FE2E690095D45A /* CalibrationStepEnum.swift */,
-				1DFC707B25FE31010095D45A /* CalibrationDataModel.swift */,
 				1DFC708025FE362E0095D45A /* ScreenPointModel.swift */,
-				BE0D465CCE1A966BFFE3F923 /* RenderPoint.swift */,
-				BE0D4B6A27ACC23A2551D497 /* HeatPoint.swift */,
 				BE0D4A09937FBF971F01A617 /* Coords.swift */,
 			);
 			path = Model;
@@ -268,7 +247,7 @@
 		BE0D4556029E251DF457AB5F /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				BE0D4A9DD070D5FA5C23AFA5 /* ReadingConstants.swift */,
+				BE0D4A9DD070D5FA5C23AFA5 /* ReadingTextConstants.swift */,
 				BE0D4CED0AC261718FA797AB /* Constants.swift */,
 			);
 			path = Constants;
@@ -409,10 +388,8 @@
 				1DF1BCA325C4C86300C7175C /* UIImageViewExtension.swift in Sources */,
 				1D93D05425F3E1B900D23BD8 /* SCNVectorHelper.swift in Sources */,
 				1D00439325FCA134000C89AD /* FaceModel.swift in Sources */,
-				1D12365D25F38859001F8795 /* CalibrationController.swift in Sources */,
 				1D12365825F38182001F8795 /* ColorHelper.swift in Sources */,
 				1D2EE72825ED9F0300547B78 /* ReadingController.swift in Sources */,
-				1DFC707725FE2E690095D45A /* CalibrationStepEnum.swift in Sources */,
 				1D12365225F380C0001F8795 /* UINavigationControllerExtension.swift in Sources */,
 				1DB9F5C525FCE83200B7678E /* CGPointExtension.swift in Sources */,
 				1D134A5325C4B75E00408C11 /* ViewController.swift in Sources */,
@@ -420,20 +397,15 @@
 				1D134A5125C4B75E00408C11 /* AppDelegate.swift in Sources */,
 				1D03381025C5A39100751559 /* SCNReferenceNodeExtension.swift in Sources */,
 				1DFC708125FE362E0095D45A /* ScreenPointModel.swift in Sources */,
-				1DFC707C25FE31010095D45A /* CalibrationDataModel.swift in Sources */,
 				1D12366D25F39FFA001F8795 /* UIDeviceExtension.swift in Sources */,
 				1D12364D25F37E65001F8795 /* BaseController.swift in Sources */,
-				1DFC707225FE1F8D0095D45A /* CalibrationDataPointService.swift in Sources */,
 				1D4A2AC926066670008BC231 /* SCNVector3Extension.swift in Sources */,
 				1D12367825F3BFF7001F8795 /* FileService.swift in Sources */,
 				1D8F403B25C57A6B009F4146 /* CameraViewController.swift in Sources */,
 				1DD0F3C726BB0C2C00E20D85 /* WebBrowserController.swift in Sources */,
-				1DFC706D25FE1D8D0095D45A /* CalibrationPointModel.swift in Sources */,
 				1D00439B25FCB996000C89AD /* DeviceModel.swift in Sources */,
 				BE0D4B71415513AF5FE50773 /* UIApplicationExtension.swift in Sources */,
-				BE0D4A2AF64949971D24DFF5 /* ReadingConstants.swift in Sources */,
-				BE0D417BA4CAF1493D8A832D /* RenderPoint.swift in Sources */,
-				BE0D4342FFB7E0F7614A633D /* HeatPoint.swift in Sources */,
+				BE0D4A2AF64949971D24DFF5 /* ReadingTextConstants.swift in Sources */,
 				BE0D4FE93614EE4076C33118 /* UIColorExtension.swift in Sources */,
 				BE0D431900D03B2AEB28BB72 /* Constants.swift in Sources */,
 				BE0D4E1F72C02BBEDF34B15B /* Coords.swift in Sources */,

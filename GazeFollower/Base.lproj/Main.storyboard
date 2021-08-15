@@ -22,7 +22,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.50852914280658612" blue="0.81625570710172357" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <rect key="contentStretch" x="0.050000000000000003" y="0.0" width="1" height="1"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
-                                <state key="normal" title="Project gaze direction on the face">
+                                <state key="normal" title="Gaze direction on the face">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="light"/>
@@ -37,7 +37,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.50852914279999994" blue="0.81625570709999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <rect key="contentStretch" x="0.050000000000000003" y="0.0" width="1" height="1"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
-                                <state key="normal" title="Test gaze estimation in reading">
+                                <state key="normal" title="Record reading">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="light"/>
@@ -52,7 +52,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.50852914279999994" blue="0.81625570709999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <rect key="contentStretch" x="0.050000000000000003" y="0.0" width="1" height="1"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
-                                <state key="normal" title="Test gaze point estimation">
+                                <state key="normal" title="Web browser">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="light"/>
@@ -72,33 +72,17 @@
                                 <color key="textColor" systemColor="systemBlueColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UgB-gr-Yd8">
-                                <rect key="frame" x="20" y="763" width="374" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.50852914279999994" blue="0.81625570709999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <rect key="contentStretch" x="0.050000000000000003" y="0.0" width="1" height="1"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
-                                <state key="normal" title="Export test estimation data">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="light"/>
-                                </state>
-                                <connections>
-                                    <action selector="onClick:forEvent:" destination="3fP-u6-DMW" eventType="touchUpInside" id="pxj-0l-bS4"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="zeG-X7-WBe"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="Oih-5q-K73"/>
                     <connections>
-                        <outlet property="calibrate" destination="JYb-SB-eOp" id="EvN-rY-VvE"/>
                         <outlet property="cameraButton" destination="CEs-TR-sTd" id="2WX-ML-Ibp"/>
                         <outlet property="eyeImage" destination="B4L-5s-SFH" id="nJC-Lk-lkT"/>
-                        <outlet property="gazeEstimator" destination="nHg-4z-uqb" id="fjp-DS-4cf"/>
                         <outlet property="mainView" destination="v4B-hM-6rR" id="9b9-t5-xVN"/>
-                        <outlet property="saveDataButton" destination="UgB-gr-Yd8" id="g34-38-gHP"/>
+                        <outlet property="recordReadingButton" destination="nHg-4z-uqb" id="4DK-4S-qES"/>
+                        <outlet property="webBrowserButton" destination="JYb-SB-eOp" id="4SR-gd-MPE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mYF-24-F4J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -269,39 +253,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0fK-R0-yoF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3447.826086956522" y="541.74107142857144"/>
-        </scene>
-        <!--Calibration Controller-->
-        <scene sceneID="uk5-IQ-iHG">
-            <objects>
-                <viewController id="w8A-4b-iXO" customClass="CalibrationController" customModule="GazeFollower" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="BkJ-kq-8qt">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iEp-DG-t8E" userLabel="Calibration View">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="822"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </arscnView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Step: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gmH-qE-Z1E">
-                                <rect key="frame" x="20" y="841" width="374" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="82U-ZL-ual"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="Dci-PC-unE"/>
-                    <connections>
-                        <outlet property="calibrationView" destination="iEp-DG-t8E" id="lad-hf-psP"/>
-                        <outlet property="counterOfSteps" destination="gmH-qE-Z1E" id="dPS-6Z-xd7"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iCt-Cc-aLY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4207.2463768115949" y="541.74107142857144"/>
         </scene>
     </scenes>
     <resources>

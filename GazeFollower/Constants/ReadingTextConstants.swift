@@ -4,7 +4,7 @@
 
 import Foundation
 
-struct ReadingConstants {
+struct ReadingTextConstants {
 
     static let readingText = """
                              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
