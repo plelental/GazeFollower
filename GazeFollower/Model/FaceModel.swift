@@ -13,7 +13,8 @@ class FaceModel {
     private var leftEye: SCNNode = SCNNode()
     private var rightEye: SCNNode = SCNNode()
     private var faceNode: SCNNode = SCNNode()
-    private var estimationPoints: Array<CGPoint> = Array()
+    private var estimationPointsX: Array<Int> = Array()
+    private var estimationPointsY: Array<Int> = Array()
 
     private var deviceModel: DeviceModel = DeviceModel()
 
@@ -85,14 +86,29 @@ class FaceModel {
         let x = eyesXCords / (deviceModel.deviceWidth / 2.0) * deviceModel.screenWidth
         let y = eyesYCords / (deviceModel.deviceHeight / 2.0) * deviceModel.screenHeight + lengthFromCameraToTheCenterOfScreenY - 100
 
-        let point = CGPoint(x: CGFloat(x), y: CGFloat(y))
-
-        if (estimationPoints.count > (Int(distanceFromDevice()))) {
-            estimationPoints.removeFirst()
+        if (estimationPointsX.count > (Int(distanceFromDevice()))) {
+            estimationPointsX.removeFirst()
+            estimationPointsY.removeFirst()
         }
-        estimationPoints.append(point)
+        estimationPointsX.append(Int(x))
+        estimationPointsY.append(Int(y))
+//        return CGPoint(x: CGFloat(x), y: CGFloat(y))
+//        return CGPoint(x: Mean(array: estimationPointsX), y: Mean(array: estimationPointsY))
+        return CGPoint(x: Median(array: estimationPointsX), y: Median(array: estimationPointsY))
+    }
 
-        return Array(estimationPoints).mean()!
+    private func Mean(array: [Int]) -> Int {
+        array.reduce(0, +) / array.count
+    }
+
+    private func Median(array: [Int]) -> CGFloat {
+        let sorted = array.sorted()
+        let count = sorted.count
+        if count % 2 == 0 {
+            return CGFloat((sorted[(count / 2)] + sorted[(count / 2) - 1])) / 2
+        } else {
+            return CGFloat(sorted[(count - 1) / 2])
+        }
     }
 
     private func estimateEyesCoordinates() -> (leftEyeCoordinates: SCNVector3?, rightEyeCoordinates: SCNVector3?) {

@@ -57,11 +57,10 @@ class ReadingController: BaseController, ARSCNViewDelegate, ARSessionDelegate, M
         GenerateHeatMap()
         screenShot = UIApplication.shared.getScreenshot()!
         try! DataToJson()
-        ShowAlert(title: "Saving recording session",
-                message: "The recording session has stopped and has been saved",
+        ShowAlert(title: "The recording session has ended",
+                message: "To save data confirm sending of a mail",
                 handler: { _ in
                     self.sendEmail(screenShot: self.screenShot)
-                    self.navigationController?.popToRootViewController(animated: true)
                 })
     }
 
@@ -83,7 +82,7 @@ class ReadingController: BaseController, ARSCNViewDelegate, ARSessionDelegate, M
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
-            mail.setToRecipients(["x@gmail.com"])
+            mail.setToRecipients(["p.lelental@gmail.com"])
             guard let readingFile = fileService.getFileUrl(fileName: Constants.readingFileNameJson) else {
                 return
             }

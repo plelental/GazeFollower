@@ -36,4 +36,29 @@ extension Array where Element == CGPoint {
 
         return reduce(.zero, +) / CGFloat(count)
     }
+
+    func median() -> CGPoint? {
+        if isEmpty {
+            return nil
+        }
+
+        func calculateMedian(array: [Int]) -> CGFloat {
+            let sorted = array.sorted()
+            if sorted.count % 2 == 0 {
+                return CGFloat((sorted[(sorted.count / 2)] + sorted[(sorted.count / 2) - 1])) / 2
+            } else {
+                return CGFloat(sorted[(sorted.count - 1) / 2])
+            }
+        }
+
+        var xArray: [Int] = []
+        var yArray: [Int] = []
+
+        for value in self {
+            xArray.append(Int(value.x))
+            yArray.append(Int(value.y))
+        }
+
+        return CGPoint(x: calculateMedian(array: xArray), y: calculateMedian(array: yArray))
+    }
 }
