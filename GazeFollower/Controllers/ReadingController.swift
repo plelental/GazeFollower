@@ -9,17 +9,20 @@ import Foundation
 import UIKit
 import SceneKit
 import ARKit
+import MessageUI
 
-class ReadingController: BaseController, ARSCNViewDelegate, ARSessionDelegate {
+class ReadingController: BaseController, ARSCNViewDelegate, ARSessionDelegate, MFMailComposeViewControllerDelegate {
 
     @IBOutlet weak var gazeView: ARSCNView!
     @IBOutlet weak var textToRead: UILabel!
 
     private let scnVectorHelper = SCNVectorHelper()
+    private let fileService = FileService()
     private var faceModel: FaceModel!
     private var gazePointView: UIView = UIView()
     private var gazePointsList: [RenderPoint] = []
     private var isRecordingSession = false
+    private var screenShot: UIImage = UIImage()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,10 +55,70 @@ class ReadingController: BaseController, ARSCNViewDelegate, ARSessionDelegate {
     @objc func doubleTapped() {
         isRecordingSession = false
         GenerateHeatMap()
-        UIApplication.shared.getScreenshot()
+        screenShot = UIApplication.shared.getScreenshot()!
+        try! DataToJson()
         ShowAlert(title: "Saving recording session",
                 message: "The recording session has stopped and has been saved",
-                handler: { _ in _ = self.navigationController?.popToRootViewController(animated: true) })
+                handler: { _ in
+                    self.sendEmail(screenShot: self.screenShot)
+                    self.navigationController?.popToRootViewController(animated: true)
+                })
+    }
+
+    func DataToJson() throws {
+        guard let readingFile = fileService.getFileUrl(fileName: Constants.readingFileNameJson) else {
+            return
+        }
+        let jsonEncoder = JSONEncoder()
+        let coords = gazePointsList.map { (renderPoint: RenderPoint) -> Coords in
+            Coords(x: Int(renderPoint.point.x), y: Int(renderPoint.point.y))
+        }
+        jsonEncoder.outputFormatting = .prettyPrinted
+
+        let jsonData = try jsonEncoder.encode(coords)
+        try? jsonData.write(to: readingFile, options: .atomicWrite)
+    }
+
+    func sendEmail(screenShot: UIImage) {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(["x@gmail.com"])
+            guard let readingFile = fileService.getFileUrl(fileName: Constants.readingFileNameJson) else {
+                return
+            }
+            do {
+                let data = try Data(contentsOf: readingFile)
+                mail.addAttachmentData(data as Data, mimeType: "application/json", fileName: Constants.readingFileNameJson)
+                mail.addAttachmentData(screenShot.jpegData(compressionQuality: CGFloat(1.0))!, mimeType: "image/jpeg", fileName: Constants.readingFileNameJpeg)
+            } catch let error {
+                print("Encountered error \(error.localizedDescription)")
+            }
+
+            present(mail, animated: true)
+        } else {
+            print("Email cannot be sent")
+        }
+    }
+
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        if let _ = error {
+            dismiss(animated: true, completion: nil)
+        }
+        switch result {
+        case .cancelled:
+            print("Cancelled")
+            break
+        case .sent:
+            print("Mail sent successfully")
+            break
+        case .failed:
+            print("Sending mail failed")
+            break
+        default:
+            break
+        }
+        controller.dismiss(animated: true, completion: nil)
     }
 
     private func GenerateHeatMap() {
@@ -84,7 +147,11 @@ class ReadingController: BaseController, ARSCNViewDelegate, ARSessionDelegate {
         let occurrencesSet = NSSet(array: highestHeatValues.map {
             $0.occurrence
         })
-        let distinctCount = occurrencesSet.count
+        var distinctCount = occurrencesSet.count
+
+        if (distinctCount == 0) {
+            distinctCount = 1
+        }
         let incrementer = (100 / distinctCount)
 
 
@@ -93,14 +160,8 @@ class ReadingController: BaseController, ARSCNViewDelegate, ARSessionDelegate {
             if (index == 0) {
                 renderScreenPointWithColor(width: 30, height: 30, subViewToRender: view, arView: gazeView, color: ColorHelper.UIColorFromRGB(0xfe11f))
             } else {
-                var heatedColor = ColorHelper
-                        .UIColorFromRGB(0xfe11f)
-                        .darker(by: CGFloat(element.occurrence * incrementer))
-                if (heatedColor?.toHexString() == "#000000") {
-                    heatedColor = ColorHelper.UIColorFromRGB(0xe30000)
-                }
-                renderScreenPointWithColor(width: 30, height: 30, subViewToRender: view, arView: gazeView, color: heatedColor!)
-
+                let heatedColor = UIColor.yellow.toColor(UIColor.red, percentage: CGFloat(element.occurrence * incrementer))
+                renderScreenPointWithColor(width: 30, height: 30, subViewToRender: view, arView: gazeView, color: heatedColor)
             }
             view.center = element.point
 

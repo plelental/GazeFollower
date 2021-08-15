@@ -25,7 +25,6 @@
 		1D134A6825C4B76100408C11 /* GazeFollowerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D134A6725C4B76100408C11 /* GazeFollowerTests.swift */; };
 		1D134A7325C4B76100408C11 /* GazeFollowerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D134A7225C4B76100408C11 /* GazeFollowerUITests.swift */; };
 		1D2EE72825ED9F0300547B78 /* ReadingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2EE72725ED9F0300547B78 /* ReadingController.swift */; };
-		1D4A2AC426064DD0008BC231 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4A2AC326064DD0008BC231 /* Constants.swift */; };
 		1D4A2AC926066670008BC231 /* SCNVector3Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4A2AC826066670008BC231 /* SCNVector3Extension.swift */; };
 		1D8F403B25C57A6B009F4146 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8F403A25C57A6B009F4146 /* CameraViewController.swift */; };
 		1D93D05425F3E1B900D23BD8 /* SCNVectorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D93D05325F3E1B900D23BD8 /* SCNVectorHelper.swift */; };
@@ -39,9 +38,11 @@
 		1DFC707C25FE31010095D45A /* CalibrationDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFC707B25FE31010095D45A /* CalibrationDataModel.swift */; };
 		1DFC708125FE362E0095D45A /* ScreenPointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFC708025FE362E0095D45A /* ScreenPointModel.swift */; };
 		BE0D417BA4CAF1493D8A832D /* RenderPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D465CCE1A966BFFE3F923 /* RenderPoint.swift */; };
+		BE0D431900D03B2AEB28BB72 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D4CED0AC261718FA797AB /* Constants.swift */; };
 		BE0D4342FFB7E0F7614A633D /* HeatPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D4B6A27ACC23A2551D497 /* HeatPoint.swift */; };
 		BE0D4A2AF64949971D24DFF5 /* ReadingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D4A9DD070D5FA5C23AFA5 /* ReadingConstants.swift */; };
 		BE0D4B71415513AF5FE50773 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D44FE8B1EC3BA11B8FEF4 /* UIApplicationExtension.swift */; };
+		BE0D4E1F72C02BBEDF34B15B /* Coords.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D4A09937FBF971F01A617 /* Coords.swift */; };
 		BE0D4FE93614EE4076C33118 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D442EE957E21B8B5CB230 /* UIColorExtension.swift */; };
 /* End PBXBuildFile section */
 
@@ -87,7 +88,6 @@
 		1D134A7225C4B76100408C11 /* GazeFollowerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GazeFollowerUITests.swift; sourceTree = "<group>"; };
 		1D134A7425C4B76100408C11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D2EE72725ED9F0300547B78 /* ReadingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingController.swift; sourceTree = "<group>"; };
-		1D4A2AC326064DD0008BC231 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1D4A2AC826066670008BC231 /* SCNVector3Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNVector3Extension.swift; sourceTree = "<group>"; };
 		1D8F403A25C57A6B009F4146 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		1D93D05325F3E1B900D23BD8 /* SCNVectorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNVectorHelper.swift; sourceTree = "<group>"; };
@@ -103,8 +103,10 @@
 		BE0D442EE957E21B8B5CB230 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		BE0D44FE8B1EC3BA11B8FEF4 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
 		BE0D465CCE1A966BFFE3F923 /* RenderPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderPoint.swift; sourceTree = "<group>"; };
+		BE0D4A09937FBF971F01A617 /* Coords.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coords.swift; sourceTree = "<group>"; };
 		BE0D4A9DD070D5FA5C23AFA5 /* ReadingConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadingConstants.swift; sourceTree = "<group>"; };
 		BE0D4B6A27ACC23A2551D497 /* HeatPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeatPoint.swift; sourceTree = "<group>"; };
+		BE0D4CED0AC261718FA797AB /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,9 +165,9 @@
 				1DFC707625FE2E690095D45A /* CalibrationStepEnum.swift */,
 				1DFC707B25FE31010095D45A /* CalibrationDataModel.swift */,
 				1DFC708025FE362E0095D45A /* ScreenPointModel.swift */,
-				1D4A2AC326064DD0008BC231 /* Constants.swift */,
 				BE0D465CCE1A966BFFE3F923 /* RenderPoint.swift */,
 				BE0D4B6A27ACC23A2551D497 /* HeatPoint.swift */,
+				BE0D4A09937FBF971F01A617 /* Coords.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -264,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				BE0D4A9DD070D5FA5C23AFA5 /* ReadingConstants.swift */,
+				BE0D4CED0AC261718FA797AB /* Constants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -405,7 +408,6 @@
 				1D12365D25F38859001F8795 /* CalibrationController.swift in Sources */,
 				1D12365825F38182001F8795 /* ColorHelper.swift in Sources */,
 				1D2EE72825ED9F0300547B78 /* ReadingController.swift in Sources */,
-				1D4A2AC426064DD0008BC231 /* Constants.swift in Sources */,
 				1DFC707725FE2E690095D45A /* CalibrationStepEnum.swift in Sources */,
 				1D12365225F380C0001F8795 /* UINavigationControllerExtension.swift in Sources */,
 				1DB9F5C525FCE83200B7678E /* CGPointExtension.swift in Sources */,
@@ -429,6 +431,8 @@
 				BE0D417BA4CAF1493D8A832D /* RenderPoint.swift in Sources */,
 				BE0D4342FFB7E0F7614A633D /* HeatPoint.swift in Sources */,
 				BE0D4FE93614EE4076C33118 /* UIColorExtension.swift in Sources */,
+				BE0D431900D03B2AEB28BB72 /* Constants.swift in Sources */,
+				BE0D4E1F72C02BBEDF34B15B /* Coords.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
