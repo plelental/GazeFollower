@@ -19,7 +19,6 @@ class CameraViewController: BaseController, ARSCNViewDelegate, ARSessionDelegate
     @IBOutlet weak var rightEyeZ: UITextField!
     @IBOutlet weak var lookingLeftRight: UITextField!
     @IBOutlet weak var lookingUpDown: UITextField!
-
     @IBOutlet weak var sceneView: ARSCNView!
 
     var contentNode: SCNNode?

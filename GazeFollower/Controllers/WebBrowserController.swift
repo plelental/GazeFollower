@@ -63,14 +63,27 @@ class WebBrowserController: BaseController, ARSCNViewDelegate, ARSessionDelegate
             return
         }
 
+
+        guard let jawLeft = faceAnchor.blendShapes[.jawLeft] else {
+            return
+        }
+
+        guard let jawRight = faceAnchor.blendShapes[.jawRight] else {
+            return
+        }
         DispatchQueue.main.async(execute: { () -> Void in
             let point = self.faceModel.estimationPointOnTheScreen
             self.gazePoint.center = point
             if mouthPucker.floatValue > 0.5 {
                 self.webView.stringByEvaluatingJavaScript(from: "document.elementFromPoint(\(point.x),\(point.y - 50)).click()")
             }
+            if jawRight.floatValue > 0.05 {
+                self.webView.stringByEvaluatingJavaScript(from: "window.scrollBy(0,\(10))")
+            }
+            if jawLeft.floatValue > 0.05 {
+                self.webView.stringByEvaluatingJavaScript(from: "window.scrollBy(0,\(-10))")
+            }
         })
-
     }
 
     func session(_ session: ARSession, didFailWithError error: Error) {
