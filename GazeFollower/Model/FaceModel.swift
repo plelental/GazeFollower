@@ -86,7 +86,7 @@ class FaceModel {
         let x = eyesXCords / (deviceModel.deviceWidth / 2.0) * deviceModel.screenWidth
         let y = eyesYCords / (deviceModel.deviceHeight / 2.0) * deviceModel.screenHeight + lengthFromCameraToTheCenterOfScreenY - 100
 
-        if (estimationPointsX.count > (Int(distanceFromDevice()))) {
+        if (estimationPointsX.count > (Int(distanceFromDevice() / 2))) {
             estimationPointsX.removeFirst()
             estimationPointsY.removeFirst()
         }

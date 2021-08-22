@@ -36,6 +36,8 @@
 		BE0D496A482E6523527BE2FE /* notebook.ipynb in Resources */ = {isa = PBXBuildFile; fileRef = BE0D45A6C6A8B6222889F794 /* notebook.ipynb */; };
 		BE0D4A2AF64949971D24DFF5 /* ReadingTextConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D4A9DD070D5FA5C23AFA5 /* ReadingTextConstants.swift */; };
 		BE0D4B71415513AF5FE50773 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D44FE8B1EC3BA11B8FEF4 /* UIApplicationExtension.swift */; };
+		BE0D4B8942ACC4E5F9755BB5 /* SessionRecordData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D4E2B1DA08E0E896FE84C /* SessionRecordData.swift */; };
+		BE0D4DA7C5714CDF803E8D27 /* SessionRecordingBaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D4444F5A28E7DDD2EC549 /* SessionRecordingBaseController.swift */; };
 		BE0D4E1F72C02BBEDF34B15B /* Coords.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D4A09937FBF971F01A617 /* Coords.swift */; };
 		BE0D4FE93614EE4076C33118 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0D442EE957E21B8B5CB230 /* UIColorExtension.swift */; };
 /* End PBXBuildFile section */
@@ -90,11 +92,13 @@
 		1DF1BCA225C4C86300C7175C /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		1DFC708025FE362E0095D45A /* ScreenPointModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenPointModel.swift; sourceTree = "<group>"; };
 		BE0D442EE957E21B8B5CB230 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		BE0D4444F5A28E7DDD2EC549 /* SessionRecordingBaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionRecordingBaseController.swift; sourceTree = "<group>"; };
 		BE0D44FE8B1EC3BA11B8FEF4 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
 		BE0D45A6C6A8B6222889F794 /* notebook.ipynb */ = {isa = PBXFileReference; lastKnownFileType = file.ipynb; path = notebook.ipynb; sourceTree = "<group>"; };
 		BE0D4A09937FBF971F01A617 /* Coords.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coords.swift; sourceTree = "<group>"; };
 		BE0D4A9DD070D5FA5C23AFA5 /* ReadingTextConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadingTextConstants.swift; sourceTree = "<group>"; };
 		BE0D4CED0AC261718FA797AB /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		BE0D4E2B1DA08E0E896FE84C /* SessionRecordData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionRecordData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +134,7 @@
 				1D8F403A25C57A6B009F4146 /* CameraViewController.swift */,
 				1D2EE72725ED9F0300547B78 /* ReadingController.swift */,
 				1DD0F3C626BB0C2C00E20D85 /* WebBrowserController.swift */,
+				BE0D4444F5A28E7DDD2EC549 /* SessionRecordingBaseController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -149,6 +154,7 @@
 				1D00439A25FCB996000C89AD /* DeviceModel.swift */,
 				1DFC708025FE362E0095D45A /* ScreenPointModel.swift */,
 				BE0D4A09937FBF971F01A617 /* Coords.swift */,
+				BE0D4E2B1DA08E0E896FE84C /* SessionRecordData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -409,6 +415,8 @@
 				BE0D4FE93614EE4076C33118 /* UIColorExtension.swift in Sources */,
 				BE0D431900D03B2AEB28BB72 /* Constants.swift in Sources */,
 				BE0D4E1F72C02BBEDF34B15B /* Coords.swift in Sources */,
+				BE0D4B8942ACC4E5F9755BB5 /* SessionRecordData.swift in Sources */,
+				BE0D4DA7C5714CDF803E8D27 /* SessionRecordingBaseController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -41,6 +41,21 @@ class BaseController: UIViewController {
         setUpAndRenderPointOnTheScreen(uiView: subViewToRender, arView: arView, screenPoint: screenPoint)
     }
 
+    func renderScreenPointWithColor(width: Int, height: Int, subViewToRender: UIView, mainView: UIView, color: UIColor) {
+        let screenPoint = ScreenPointModel(cornerRadius: 20,
+                shadowOpacity: 1,
+                shadowOffset: .zero,
+                shadowRadius: 20,
+                shadowPath: UIBezierPath(rect: subViewToRender.bounds).cgPath,
+                width: width,
+                height: height,
+                x: 0,
+                y: 0,
+                backgroundColor: color)
+
+        setUpAndRenderPointOnTheScreen(uiView: subViewToRender, mainView: mainView, screenPoint: screenPoint)
+    }
+
     func renderScreenPointWithColor(width: Int, height: Int, subViewToRender: UIView, arView: ARSCNView, rgbColor: Int) {
         let screenPoint = ScreenPointModel(cornerRadius: 20,
                 shadowOpacity: 1,
@@ -57,7 +72,16 @@ class BaseController: UIViewController {
     }
 
     func setUpAndRenderPointOnTheScreen(uiView: UIView, arView: ARSCNView, screenPoint: ScreenPointModel) {
+        SetUpScreenPointOnView(uiView: uiView, screenPoint: screenPoint)
+        arView.addSubview(uiView)
+    }
 
+    func setUpAndRenderPointOnTheScreen(uiView: UIView, mainView: UIView, screenPoint: ScreenPointModel) {
+        SetUpScreenPointOnView(uiView: uiView, screenPoint: screenPoint)
+        mainView.addSubview(uiView)
+    }
+
+    private func SetUpScreenPointOnView(uiView: UIView, screenPoint: ScreenPointModel) {
         uiView.frame = CGRect.init(
                 x: screenPoint.x,
                 y: screenPoint.y,
@@ -73,8 +97,6 @@ class BaseController: UIViewController {
             uiView.layer.shadowRadius = screenPoint.shadowRadius ?? 3.0
             uiView.layer.shadowPath = screenPoint.shadowPath
         }
-
-        arView.addSubview(uiView)
     }
 
     func setUpARSession(view: ARSCNView) {
