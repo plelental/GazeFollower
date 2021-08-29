@@ -115,11 +115,11 @@ class WebBrowserController: SessionRecordingBaseController, UIWebViewDelegate {
                 self.webView.stringByEvaluatingJavaScript(from: "document.elementFromPoint(\(point.x),\(point.y - 50)).click()")
                 self.gazePointsList = []
             }
-            if jawRight.floatValue > 0.05 {
+            if jawRight.floatValue > 0.2 {
                 self.webView.stringByEvaluatingJavaScript(from: "window.scrollBy(0,\(10))")
                 self.gazePointsList = []
             }
-            if jawLeft.floatValue > 0.05 {
+            if jawLeft.floatValue > 0.2 {
                 self.webView.stringByEvaluatingJavaScript(from: "window.scrollBy(0,\(-10))")
                 self.gazePointsList = []
             }

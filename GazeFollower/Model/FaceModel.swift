@@ -93,9 +93,10 @@ class FaceModel {
         estimationPointsX.append(Int(x))
         estimationPointsY.append(Int(y))
 //        return CGPoint(x: CGFloat(x), y: CGFloat(y))
-//        return CGPoint(x: Mean(array: estimationPointsX), y: Mean(array: estimationPointsY))
-        return CGPoint(x: Median(array: estimationPointsX), y: Median(array: estimationPointsY))
+        return CGPoint(x: Mean(array: estimationPointsX), y: Mean(array: estimationPointsY))
+//        return CGPoint(x: Median(array: estimationPointsX), y: Median(array: estimationPointsY))
     }
+
 
     private func Mean(array: [Int]) -> Int {
         array.reduce(0, +) / array.count
