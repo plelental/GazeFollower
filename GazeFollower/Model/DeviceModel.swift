@@ -17,9 +17,8 @@ class DeviceModel {
     public var screenNode: SCNNode = SCNNode()
 
     init() {
-        deviceWidth = self.getDeviceSize().width
-
-        deviceHeight = self.getDeviceSize().height
+        deviceWidth = getDeviceSize().width
+        deviceHeight = getDeviceSize().height
     }
 
     public func setUpDeviceScreenNode(view: ARSCNView) {
@@ -39,6 +38,26 @@ class DeviceModel {
         switch UIDevice.modelName {
         case "iPhone 11":
             return (width: 0.0757, height: 0.1509)
+        case "iPhone X":
+            return (width: 0.0709, height: 0.1436)
+        case "iPhone XS":
+            return (width: 0.0709, height: 0.1436)
+        case "iPhone XS Max":
+            return (width: 0.0774, height: 0.1575)
+        case "iPhone XR":
+            return (width: 0.0757, height: 0.1509)
+        case "iPhone 11 Pro":
+            return (width: 0.0714, height: 0.1440)
+        case "iPhone 11 Pro Max":
+            return (width: 0.0778, height: 0.1580)
+        case "iPhone 12 mini":
+            return (width: 0.0642, height: 0.1315)
+        case "iPhone 12":
+            return (width: 0.0715, height: 0.1467)
+        case "iPhone 12 Pro":
+            return (width: 0.0715, height: 0.1467)
+        case "iPhone 12 Pro Max":
+            return (width: 0.0781, height: 0.1608)
         default:
             return (width: 0, height: 0)
         }
