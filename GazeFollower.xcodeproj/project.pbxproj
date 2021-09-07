@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		1D00439325FCA134000C89AD /* FaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D00439225FCA134000C89AD /* FaceModel.swift */; };
 		1D00439B25FCB996000C89AD /* DeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D00439A25FCB996000C89AD /* DeviceModel.swift */; };
-		1D03380425C5A03500751559 /* coordinateOrigin.scn in Resources */ = {isa = PBXBuildFile; fileRef = 1D03380325C5A03500751559 /* coordinateOrigin.scn */; };
 		1D03381025C5A39100751559 /* SCNReferenceNodeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D03380F25C5A39100751559 /* SCNReferenceNodeExtension.swift */; };
+		1D0EBDE126E7FF7600E58592 /* coordinateOrigin.scn in Resources */ = {isa = PBXBuildFile; fileRef = 1D0EBDE026E7FF7600E58592 /* coordinateOrigin.scn */; };
 		1D12364D25F37E65001F8795 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D12364C25F37E65001F8795 /* BaseController.swift */; };
 		1D12365225F380C0001F8795 /* UINavigationControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D12365125F380C0001F8795 /* UINavigationControllerExtension.swift */; };
 		1D12365825F38182001F8795 /* ColorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D12365725F38182001F8795 /* ColorHelper.swift */; };
@@ -60,8 +60,8 @@
 /* Begin PBXFileReference section */
 		1D00439225FCA134000C89AD /* FaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceModel.swift; sourceTree = "<group>"; };
 		1D00439A25FCB996000C89AD /* DeviceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceModel.swift; sourceTree = "<group>"; };
-		1D03380325C5A03500751559 /* coordinateOrigin.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = coordinateOrigin.scn; path = ../../../TrackingAndVisualizingFaces/ARKitFaceExample/Resources/Models.scnassets/coordinateOrigin.scn; sourceTree = "<group>"; };
 		1D03380F25C5A39100751559 /* SCNReferenceNodeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNReferenceNodeExtension.swift; sourceTree = "<group>"; };
+		1D0EBDE026E7FF7600E58592 /* coordinateOrigin.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = coordinateOrigin.scn; sourceTree = "<group>"; };
 		1D12364C25F37E65001F8795 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		1D12365125F380C0001F8795 /* UINavigationControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerExtension.swift; sourceTree = "<group>"; };
 		1D12365725F38182001F8795 /* ColorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHelper.swift; sourceTree = "<group>"; };
@@ -156,7 +156,7 @@
 		1D0337FF25C59FF100751559 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				1D03380325C5A03500751559 /* coordinateOrigin.scn */,
+				1D0EBDE026E7FF7600E58592 /* coordinateOrigin.scn */,
 				1D134A5925C4B76000408C11 /* Assets.xcassets */,
 				BE0D45A6C6A8B6222889F794 /* notebook.ipynb */,
 			);
@@ -336,9 +336,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D0EBDE126E7FF7600E58592 /* coordinateOrigin.scn in Resources */,
 				1D134A5D25C4B76000408C11 /* LaunchScreen.storyboard in Resources */,
 				1D134A5A25C4B76000408C11 /* Assets.xcassets in Resources */,
-				1D03380425C5A03500751559 /* coordinateOrigin.scn in Resources */,
 				1D134A5825C4B75E00408C11 /* Main.storyboard in Resources */,
 				BE0D496A482E6523527BE2FE /* notebook.ipynb in Resources */,
 			);
